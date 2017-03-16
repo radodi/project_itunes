@@ -138,11 +138,12 @@ body {
 	color: #fff!important;
 	background-color: #009e9c!important;
 	padding: 3px;
-	margin: 0 3px;
+	margin: 5px;
 	border-radius: 3px; 
 	margin-bottom: 5px; 
 }
 .form-group .msg {
+	margin: 0 3px;
 	border-top-left-radius: 0px;
 	border-top-right-radius: 0px;
 }

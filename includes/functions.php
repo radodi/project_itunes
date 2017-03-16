@@ -40,5 +40,29 @@ function register_user($first_name, $last_name, $email, $password, $password_re,
 
 //User Log in
 function login_user($email, $password, $conn){
-
+	//check e-mail
+	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = true;
+		$GLOBALS['login_err'] = '<div class="msg"><i class="material-icons">error_outline</i> Invalid email format!</div>';
+	} else {
+		unset($GLOBALS['email_err']);
+		$q = "SELECT `email` FROM `users` WHERE `email` = '$email'";
+    	$res = mysqli_query($conn, $q);
+    	if (mysqli_num_rows($res) == 0) {
+    		$GLOBALS['login_err'] = '<div class="msg"><i class="material-icons">error_outline</i> This e-mail address is not registered!</div>';
+    	} else {
+    		$q = "SELECT `user_id`, `first_name`, `last_name`, `email`, `password`, `picture`, `date_deleted` FROM `users` WHERE `email` = '$email' AND `password` = '" . md5($password) . "' AND `date_deleted`IS NULL";
+    		$res = mysqli_query($conn, $q);
+    		if (mysqli_num_rows($res) == 0) {
+    			$GLOBALS['login_err'] = '<div class="msg"><i class="material-icons">error_outline</i> Wrong password!</div>';
+    		} else {
+    			$row = mysqli_fetch_assoc($res);
+    			$_SESSION['user_id'] = $row['user_id'];
+    			$_SESSION['first_name'] = $row['first_name'];
+    			$_SESSION['last_name'] = $row['last_name'];
+    			$_SESSION['email'] = $row['email'];
+    			header('Location: http://localhost/project_itunes/');
+    		}
+    	}
+	}
 }

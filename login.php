@@ -2,7 +2,7 @@
 <?php
 session_start();
 if (isset($_SESSION['user_id'])) {
-	header('Location: index.php');
+	header('Location: http://localhost/project_itunes/');
 }
 include 'includes/db_connect.php';
 include 'includes/functions.php';
@@ -51,10 +51,11 @@ if (isset($_POST['reg'])) {
 			<div class="col-md-4">
 			<form action="login.php" method="post" class="form-inline header-form">
 				<div class="form-group">
-					<input type="email" class="form-control input-sm" name="email" placeholder="e-Mail">
+					<input type="email" class="form-control input-sm" name="email" placeholder="e-Mail" value="<?php if (isset($_POST['email'])){ echo $_POST['email'];} ?>">
 					<input type="password" class="form-control input-sm" name="password" placeholder="Password">
 					<input type="submit" class="btn btn-default" name="log" value="Log in">
 				</div>
+				<?php if (isset($login_err)) { echo $login_err; } ?>
 			</form>
 			</div>
 		</div>
