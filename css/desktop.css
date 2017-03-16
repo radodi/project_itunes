@@ -9,7 +9,13 @@ body {
 	font-size: 14px;
 	box-sizing: border-box;
 }
-.header {
+.avatar, .avatar img {
+	border-radius: 50%;
+}
+.user-col{ text-align: right;}
+.userinfo {
+	text-align: left;
+	margin-top: 20px;
 }
 .name {
 	font-weight: lighter;
@@ -22,7 +28,7 @@ body {
 }
 .material-icons {
 	vertical-align: middle;
-	font-size: inherit;
+	font-size: 18px;
 }
 .header-form {
 	padding-top: 40px;

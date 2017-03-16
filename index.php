@@ -47,7 +47,16 @@ if (!isset($_SESSION['user_id'])) {
 					</div>
 				</form>
 			</div>
-			<div class="col-md-4"></div>
+			<div class="col-md-4 user-col">
+				<div class="box userinfo">
+					<div>Hello <strong><?= $_SESSION['first_name']?> <?= $_SESSION['last_name']?></strong>.</div>
+					<div><a href="edit_user.php"><i class="material-icons">person_pin</i>Edit my info</a></div>
+					<div><a href="logout.php"><i class="material-icons">power_settings_new</i>Logout</a></div>
+				</div>
+				<div class="box thumbnail avatar">
+					<img src="img/user_default.png" alt="User Picture">
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="container">
