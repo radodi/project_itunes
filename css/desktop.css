@@ -1,0 +1,158 @@
+@charset "UTF-8";
+body {
+	background-color: #EEE;
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.box {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 14px;
+	box-sizing: border-box;
+}
+.header {
+}
+.name {
+	font-weight: lighter;
+	letter-spacing: -2px;
+	margin: 30px 0 0 0;
+}
+.slogan, .slogan .material-icons {
+	font-size: 16px;
+	margin: 3px 2px;
+}
+.material-icons {
+	vertical-align: middle;
+	font-size: inherit;
+}
+.header-form {
+	padding-top: 40px;
+	text-align: center;
+	vertical-align: middle;
+}
+.form-control:focus {
+    border-color: #009e9c;
+    outline: 0!important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(0,158,156,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(0,158,156,.6);
+}
+.btn-default:focus {
+	outline: 0!important;
+}
+.container {
+	width: 900px;
+}
+.tracks, .track {
+	font-size: 0px;
+}
+.tracks, .tracks a {
+	color: #009e9c;
+	text-align: center;
+	text-decoration: none;
+}
+.tracks .material-icons {
+	font-size: 18px;
+}
+.art {
+	width: 118px;
+}
+.song {
+	width: 200px;
+}
+.artist {
+	width: 170px;
+}
+.date {
+	width: 90px;
+}
+.user {
+	width: 110px
+}
+.dw {
+	width: 120px;
+}
+.rating {
+	width: 90px;
+}
+.rating .material-icons {
+	font-size: 12px;
+	width: 12px;
+	overflow: hidden;
+}
+.b-b {
+	border-bottom: 1px solid #CCC;
+}
+.b-r {
+	border-right: 1px dashed #CCC;
+}
+.grey{ color: #CCC; }
+.sort_up:after {
+	content: "▾";
+}
+.sort_dl:after {
+	content: "▴";
+}
+.track {
+	color: #009e9c;
+	background-color: #FFF;
+	margin-top: 5px;
+	border: 1px solid #CCC;
+}
+.track .row {
+	margin: 3px 0;
+	font-size: 0px;
+	text-align: center;
+}
+.thumbnail {
+	margin: 3px;
+}
+.track .row div {
+	height: 50px;
+}
+.player {
+	width: 20px;
+    height:20px;
+    font-size: 20px;
+    margin: 0;
+    padding: 0px;
+    border-radius: 50%;
+    color: #009e9c;
+    cursor: pointer;
+    user-select: none;
+    vertical-align: middle;
+}
+.toggle{
+	padding: 15px;
+}
+.inverse{
+ 	direction: rtl;
+ 	display: inline-block; /* inline-block to keep parent at the left of window */
+}
+.inverse i:hover, .inverse i:hover ~ i{ /* On hover target it's "previous";) elements */
+	color:gold;
+}
+.footer {
+	text-align: center;
+}
+.msg {
+	font-size: 14px;
+	color: #fff!important;
+	background-color: #009e9c!important;
+	padding: 3px;
+	margin: 0 3px;
+	border-radius: 3px; 
+	margin-bottom: 5px; 
+}
+.form-group .msg {
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+}
+.msg .material-icons {
+	font-size: 18px;
+	vertical-align: bottom;
+}
+.register-form {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 10px;
+}
