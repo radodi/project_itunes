@@ -89,7 +89,7 @@ if (isset($_GET['action'])) {
 			if (isset($_FILES['fileToUpload'])) { upload_user_image($conn); }
 			if (isset($picture_err)) { echo $picture_err; unset($GLOBALS['picture_err']); }
 			if (isset($_POST['upd'])) {
-				update_user_info($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['password'], $_POST['password_re'], $conn, true);
+				update_user_info($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['password'], $_POST['password_re'], $_POST['user_name'], $conn, true);
 				unset($_POST);
 			}
 			?>
@@ -110,6 +110,11 @@ if (isset($_GET['action'])) {
 					<label for="last_name">Last Name</label>
 					<input type="text" class="form-control input-sm" name="last_name" id="last_name" value="<?php if (isset($_SESSION['last_name'])) { echo $_SESSION['last_name']; } ?>">
 					<?php if (isset($name_err)) { echo $name_err; } ?>
+				</div>
+				<div class="form-group">
+					<label for="user_name">User Name</label>
+					<input type="text" class="form-control input-sm" name="user_name" id="user_name" value="<?php if (isset($_SESSION['user_name'])) { echo $_SESSION['user_name']; } ?>">
+					<?php if (isset($username_err)) { echo $username_err; } ?>
 				</div>
 				<div class="form-group">
 					<label for="email">e-Mail</label>

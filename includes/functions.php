@@ -1,6 +1,6 @@
 <?php
 //User Registration
-function update_user_info($first_name, $last_name, $email, $password, $password_re, $conn, $update = false){
+function update_user_info($first_name, $last_name, $email, $password, $password_re, $username, $conn, $update = false){
 	if (!preg_match('/^[a-zA-Z]+$/', $first_name) || !preg_match('/^[a-zA-Z]+$/', $last_name)) {
 		$error = true;
 		$GLOBALS['name_err'] = '<div class="msg"><i class="material-icons">error_outline</i> First and Last name can contain only letters!</div>';
@@ -16,13 +16,36 @@ function update_user_info($first_name, $last_name, $email, $password, $password_
 			$q = "SELECT `email` FROM `users` WHERE `email` = '$email'";
 			$res = mysqli_query($conn, $q);
 			if (mysqli_num_rows($res) !==0) {
+				$error = true;
 				$GLOBALS['email_err'] = '<div class="msg"><i class="material-icons">error_outline</i> E-mail address: ' . $email . ' is already registered!</div>';
 			}
 		} else {
-			$q = "SELECT `email` FROM `users` WHERE `email` = '$email' AND`user_id` != " . $_SESSION['user_id'] . "";
+			$q = "SELECT `email` FROM `users` WHERE `email` = '$email' AND `user_id` != " . $_SESSION['user_id'] . "";
 			$res = mysqli_query($conn, $q);
 			if (mysqli_num_rows($res) !==0) {
+				$error = true;
 				$GLOBALS['email_err'] = '<div class="msg"><i class="material-icons">error_outline</i> E-mail address: ' . $email . ' is already registered!</div>';
+			}
+		}
+	}
+	if(!preg_match('/^[a-zA-Z0-9]+$/', $username) || strlen($username) < 4 ) {
+		$error = true;
+		$GLOBALS['username_err'] = '<div class="msg"><i class="material-icons">error_outline</i>The username should be at least 4 characters, can contain letters and numbers</div>';
+	} else {
+		unset($GLOBALS['username_err']);
+		if ($update == true) {
+			$q = "SELECT `user_name` FROM `users` WHERE `user_name` = '$username' AND `user_id` != " . $_SESSION['user_id'] . "";
+			$res = mysqli_query($conn, $q);
+			if (mysqli_num_rows($res) !==0) {
+				$error = true;
+				$GLOBALS['username_err'] = '<div class="msg"><i class="material-icons">error_outline</i> The username ' . $username . ' is not available!</div>';
+			}
+		 } else {
+			$q = "SELECT `user_name` FROM `users` WHERE `user_name` = '$username'";
+			$res = mysqli_query($conn, $q);
+			if (mysqli_num_rows($res) !==0) {
+				$error = true;
+				$GLOBALS['username_err'] = '<div class="msg"><i class="material-icons">error_outline</i> The username ' . $username . ' is not available!</div>';
 			}
 		}
 	}
@@ -41,9 +64,9 @@ function update_user_info($first_name, $last_name, $email, $password, $password_
 	if (!isset($error)) {
 		if (isset($_SESSION['user_id'])) {
 			$user_id = $_SESSION['user_id'];
-			$q = "UPDATE `users` SET `first_name`='$first_name',`last_name`='$last_name',`email`='$email',`password`='" . md5($password) . "' WHERE `user_id`= '$user_id' AND `date_deleted` IS NULL";
+			$q = "UPDATE `users` SET `first_name`='$first_name',`last_name`='$last_name',`user_name`='$username',`email`='$email',`password`='" . md5($password) . "' WHERE `user_id`= '$user_id' AND `date_deleted` IS NULL";
 		} else {
-			$q= "INSERT INTO `users`(`first_name`, `last_name`, `email`, `password`) VALUES ('$first_name', '$last_name', '$email', '" . md5($password) . "')";
+			$q= "INSERT INTO `users`(`first_name`, `last_name`, `user_name`, `email`, `password`) VALUES ('$first_name', '$last_name', '$username', '$email', '" . md5($password) . "')";
 		}
 		if (mysqli_query($conn, $q)) {
 			if ($update == false) {
@@ -56,6 +79,7 @@ function update_user_info($first_name, $last_name, $email, $password, $password_
 				$_SESSION['user_id'] = $row['user_id'];
 				$_SESSION['first_name'] = $row['first_name'];
 				$_SESSION['last_name'] = $row['last_name'];
+				$_SESSION['user_name'] = $row['user_name'];
 				$_SESSION['email'] = $row['email'];
 			}
 		}
@@ -75,7 +99,7 @@ function login_user($email, $password, $conn){
 		if (mysqli_num_rows($res) == 0) {
 			$GLOBALS['login_err'] = '<div class="msg"><i class="material-icons">error_outline</i> This e-mail address is not registered!</div>';
 		} else {
-			$q = "SELECT `user_id`, `first_name`, `last_name`, `email`, `password`, `picture`, `date_deleted` FROM `users` WHERE `email` = '$email' AND `password` = '" . md5($password) . "' AND `date_deleted`IS NULL";
+			$q = "SELECT `user_id`, `first_name`, `last_name`, `user_name`, `email`, `password`, `picture`, `date_deleted` FROM `users` WHERE `email` = '$email' AND `password` = '" . md5($password) . "' AND `date_deleted`IS NULL";
 			$res = mysqli_query($conn, $q);
 			if (mysqli_num_rows($res) == 0) {
 				$GLOBALS['login_err'] = '<div class="msg"><i class="material-icons">error_outline</i> Wrong password!</div>';
@@ -84,6 +108,7 @@ function login_user($email, $password, $conn){
 				$_SESSION['user_id'] = $row['user_id'];
 				$_SESSION['first_name'] = $row['first_name'];
 				$_SESSION['last_name'] = $row['last_name'];
+				$_SESSION['user_name'] = $row['user_name'];
 				$_SESSION['email'] = $row['email'];
 				header('Location: http://localhost/project_itunes/');
 			}

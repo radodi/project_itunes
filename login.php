@@ -7,7 +7,7 @@ if (isset($_SESSION['user_id'])) {
 include 'includes/db_connect.php';
 include 'includes/functions.php';
 if (isset($_POST['reg'])) {
-	update_user_info($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['password'], $_POST['password_re'], $conn);
+	update_user_info($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['password'], $_POST['password_re'], $_POST['user_name'], $conn);
 } elseif (isset($_POST['log'])) {
 	login_user($_POST['email'], $_POST['password'], $conn);
 }
@@ -80,6 +80,11 @@ if (isset($_POST['reg'])) {
 					<label for="last_name">Last Name</label>
 					<input type="text" class="form-control input-sm" name="last_name" id="last_name" value="<?php if (isset($_POST['last_name'])) { echo $_POST['last_name']; } ?>">
 					<?php if (isset($name_err)) { echo $name_err; } ?>
+				</div>
+				<div class="form-group">
+					<label for="user_name">User Name</label>
+					<input type="text" class="form-control input-sm" name="user_name" id="user_name" value="<?php if (isset($_POST['user_name'])) { echo $_POST['user_name']; } ?>">
+					<?php if (isset($username_err)) { echo $username_err; } ?>
 				</div>
 				<div class="form-group">
 					<label for="email">e-Mail</label>
