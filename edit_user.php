@@ -5,6 +5,9 @@ if (!isset($_SESSION['user_id'])) {
 }
 include 'includes/db_connect.php';
 include 'includes/functions.php';
+if (isset($_GET['action'])) {
+	default_user_image($conn);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -68,6 +71,9 @@ include 'includes/functions.php';
 			<form class="form white-form" action="edit_user.php" method="post" enctype="multipart/form-data">
 			<div class="box thumbnail">
 				<img src="<?php show_user_image($conn); ?>" alt="User Picture">
+				<div class="caption">
+					<a href="edit_user.php?action=delete"><i class="material-icons">delete</i> Delete</a>
+				</div>
 			</div>
 			<div class="box">
 				<h4>Change Picture</h4>
@@ -82,13 +88,20 @@ include 'includes/functions.php';
 			<?php
 			if (isset($_FILES['fileToUpload'])) { upload_user_image($conn); }
 			if (isset($picture_err)) { echo $picture_err; unset($GLOBALS['picture_err']); }
-			if (isset($_POST['update'])) {
+			if (isset($_POST['upd'])) {
 				update_user_info($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['password'], $_POST['password_re'], $conn, true);
+				unset($_POST);
 			}
 			?>
 		</div>
 		<div class="col-md-6">
+			<?php
+			if (isset($regmsg)) {
+				echo $regmsg;
+			}
+			?>
 			<form class="white-form" action="edit_user.php" method="post">
+			<h4>Update User info</h4>
 				<div class="form-group">
 					<label for="first_name">First Name</label>
 					<input type="text" class="form-control input-sm" name="first_name" id="first_name" value="<?php if (isset($_SESSION['first_name'])) { echo $_SESSION['first_name']; } ?>">
@@ -115,7 +128,7 @@ include 'includes/functions.php';
 					<?php if (isset($password_err_re)) { echo $password_err_re; } ?>
 				</div>
 				<div class="form-group">
-					<input type="submit" class="btn btn-default" name="update" value="Update">
+					<input type="submit" class="btn btn-default" name="upd" value="Update">
 				</div>
 			</form>
 		</div>

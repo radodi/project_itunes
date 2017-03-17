@@ -163,3 +163,6 @@ body {
 	border-radius: 3px;
 	padding: 10px;
 }
+.caption .material-icons {
+	vertical-align: top;
+}

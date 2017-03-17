@@ -16,14 +16,12 @@ function update_user_info($first_name, $last_name, $email, $password, $password_
 			$q = "SELECT `email` FROM `users` WHERE `email` = '$email'";
 			$res = mysqli_query($conn, $q);
 			if (mysqli_num_rows($res) !==0) {
-				$error = true;
 				$GLOBALS['email_err'] = '<div class="msg"><i class="material-icons">error_outline</i> E-mail address: ' . $email . ' is already registered!</div>';
 			}
 		} else {
 			$q = "SELECT `email` FROM `users` WHERE `email` = '$email' AND`user_id` != " . $_SESSION['user_id'] . "";
 			$res = mysqli_query($conn, $q);
 			if (mysqli_num_rows($res) !==0) {
-				$error = true;
 				$GLOBALS['email_err'] = '<div class="msg"><i class="material-icons">error_outline</i> E-mail address: ' . $email . ' is already registered!</div>';
 			}
 		}
@@ -42,13 +40,24 @@ function update_user_info($first_name, $last_name, $email, $password, $password_
 	}
 	if (!isset($error)) {
 		if (isset($_SESSION['user_id'])) {
-
-			$q = "UPDATE `users` SET `first_name`='$first_name',`last_name`=$last_name,`email`='$email',`password`='" . md5($password) . "' WHERE `user_id`= '" . $_SESSION['user_id'] . "' AND `date_deleted` IS NULL";
+			$user_id = $_SESSION['user_id'];
+			$q = "UPDATE `users` SET `first_name`='$first_name',`last_name`='$last_name',`email`='$email',`password`='" . md5($password) . "' WHERE `user_id`= '$user_id' AND `date_deleted` IS NULL";
 		} else {
 			$q= "INSERT INTO `users`(`first_name`, `last_name`, `email`, `password`) VALUES ('$first_name', '$last_name', '$email', '" . md5($password) . "')";
 		}
 		if (mysqli_query($conn, $q)) {
-			$GLOBALS['regmsg'] = '<div class="msg"><i class="material-icons">	info_outline</i>The registration is successful. Please Login.</div>';
+			if ($update == false) {
+				$GLOBALS['regmsg'] = '<div class="msg"><i class="material-icons">info_outline</i>The registration is successful. Please Login.</div>';
+			} else {
+				$GLOBALS['regmsg'] = '<div class="msg"><i class="material-icons">info_outline</i>User Info is updated successful.</div>';
+				$q = "SELECT * FROM `users` WHERE `user_id` = '$user_id'";
+				$res = mysqli_query($conn, $q);
+				$row = mysqli_fetch_assoc($res);
+				$_SESSION['user_id'] = $row['user_id'];
+				$_SESSION['first_name'] = $row['first_name'];
+				$_SESSION['last_name'] = $row['last_name'];
+				$_SESSION['email'] = $row['email'];
+			}
 		}
 	}
 }
@@ -185,10 +194,17 @@ if ($uploadOk == 0) {
 }
 //END IMAGE UPLOAD
 
-// SET USER_IMAGE SESSION
+// SHOW USER_IMAGE
 function show_user_image($conn) {
 	$q = "SELECT `picture` FROM `users` WHERE `user_id` ='" . $_SESSION['user_id'] . "'";
 	$res = mysqli_query($conn, $q);
 	$row = mysqli_fetch_assoc($res);
 	echo $row['picture'];
+}
+//SET USER_IMAGE to DEFAULT
+function default_user_image($conn){
+	$q = "UPDATE `users` SET `picture`='img/user_default.png' WHERE `user_id`= '" . $_SESSION['user_id'] . "'";
+	mysqli_query($conn, $q);
+	unset($_GET);
+	header('Location: edit_user.php');
 }
