@@ -1,24 +1,17 @@
-
 <?php
 session_start();
-if (isset($_SESSION['user_id'])) {
-	header('Location: http://localhost/project_itunes/');
+if (!isset($_SESSION['user_id'])) {
+	header('Location: login.php');
 }
 include 'includes/db_connect.php';
 include 'includes/functions.php';
-if (isset($_POST['reg'])) {
-	register_user($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['password'], $_POST['password_re'], $conn);
-} elseif (isset($_POST['log'])) {
-	login_user($_POST['email'], $_POST['password'], $conn);
-}
 ?>
 <!DOCTYPE html>
-<html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>My Tunes - Log in / Register.</title>
+	<title>My Tunes - Music sharing.</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<!-- Optional theme -->
@@ -35,6 +28,7 @@ if (isset($_POST['reg'])) {
 	<link rel="stylesheet" type="text/css" href="css/desktop.css">
 </head>
 <body>
+</body>
 	<div class="container-fluid header">
 		<!-- header -->
 		<div class="row">
@@ -49,46 +43,66 @@ if (isset($_POST['reg'])) {
 				</div>
 			</div>
 			<div class="col-md-4">
-			<form action="login.php" method="post" class="form-inline header-form">
-				<div class="form-group">
-					<input type="email" class="form-control input-sm" name="email" placeholder="e-Mail" value="<?php if (isset($_POST['email'])){ echo $_POST['email'];} ?>">
-					<input type="password" class="form-control input-sm" name="password" placeholder="Password">
-					<input type="submit" class="btn btn-default" name="log" value="Log in">
+				<form class="form-inline header-form">
+					<div class="form-group">
+						<input class="form-control input-sm" type="text" name="search" placeholder=" Type name of song or artist.."> 
+						<button class="btn btn-default btn-sm"><i class="material-icons ico18">search</i> Search</button>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-4 user-col">
+				<div class="box userinfo">
+					<div>Hello <strong><?= $_SESSION['first_name']?> <?= $_SESSION['last_name']?></strong>.</div>
+					<div><a href="edit_user.php"><i class="material-icons">person_pin</i>Edit my info</a></div>
+					<div><a href="logout.php"><i class="material-icons">power_settings_new</i>Logout</a></div>
 				</div>
-				<?php if (isset($login_err)) { echo $login_err; } ?>
-			</form>
+				<div class="box thumbnail avatar">
+					<img src="<?php show_user_image($conn); ?>" alt="User Picture">
+				</div>
 			</div>
 		</div>
 	</div>
 	<div class="container">
-		<div class="col-md-12">
+	<div class="row">
+		<div class="col-md-6">
+			<form class="form white-form" action="edit_user.php" method="post" enctype="multipart/form-data">
+			<div class="box thumbnail">
+				<img src="<?php show_user_image($conn); ?>" alt="User Picture">
+			</div>
+			<div class="box">
+				<h4>Change Picture</h4>
+				<div class="form-group">
+					<input class="form-control-file" type="file" name="fileToUpload" id="fileToUpload">
+				</div>
+				<div class="form-group">
+					<input class="btn btn-default" type="submit" value="Upload Image" name="submit">
+				</div>
+			</div>
+			</form>
 			<?php
-			if (!isset($regmsg)) {
+			if (isset($_FILES['fileToUpload'])) { upload_user_image($conn); }
+			if (isset($picture_err)) { echo $picture_err; unset($GLOBALS['picture_err']); }
 			?>
-			<h3>Register:</h3>
-			<?php
-			} else {
-				echo $regmsg;
-			}
-			?>
+		</div>
+		<div class="col-md-6">
 			<form class="white-form" action="login.php" method="post">
 				<div class="form-group">
 					<label for="first_name">First Name</label>
-					<input type="text" class="form-control input-sm" name="first_name" id="first_name" value="<?php if (isset($_POST['first_name'])) { echo $_POST['first_name']; } ?>">
+					<input type="text" class="form-control input-sm" name="first_name" id="first_name" value="<?php if (isset($_SESSION['first_name'])) { echo $_SESSION['first_name']; } ?>">
 				</div>
 				<div class="form-group">
 					<label for="last_name">Last Name</label>
-					<input type="text" class="form-control input-sm" name="last_name" id="last_name" value="<?php if (isset($_POST['last_name'])) { echo $_POST['last_name']; } ?>">
+					<input type="text" class="form-control input-sm" name="last_name" id="last_name" value="<?php if (isset($_SESSION['last_name'])) { echo $_SESSION['last_name']; } ?>">
 					<?php if (isset($name_err)) { echo $name_err; } ?>
 				</div>
 				<div class="form-group">
 					<label for="email">e-Mail</label>
-					<input type="email" class="form-control input-sm" name="email" id="email" value="<?php if (isset($_POST['email'])) { echo $_POST['email']; } ?>">
+					<input type="email" class="form-control input-sm" name="email" id="email" value="<?php if (isset($_SESSION['email'])) { echo $_SESSION['email']; } ?>">
 					<?php if (isset($email_err)) { echo $email_err; } ?>
 				</div>
 				<div class="form-group">
 					<label for="password">Password</label>
-					<input type="password" class="form-control input-sm" name="password" id="password" value="<?php if (isset($_POST['password'])) { echo $_POST['password']; } ?>">
+					<input type="password" class="form-control input-sm" name="password" id="password" value="<?php if (isset($_SESSION['password'])) { echo $_SESSION['password']; } ?>">
 					<?php if (isset($password_err)) { echo $password_err; } ?>
 					<small class="form-text text-muted">The password should be at least 6 characters, must contain at least 1 uppercase letter, 1 lowercase letter and 1 number.</small>
 				</div>
@@ -98,13 +112,13 @@ if (isset($_POST['reg'])) {
 					<?php if (isset($password_err_re)) { echo $password_err_re; } ?>
 				</div>
 				<div class="form-group">
-					<input type="submit" class="btn btn-default" name="reg" value="Register">
+					<input type="submit" class="btn btn-default" name="reg" value="Update">
 				</div>
 			</form>
+		</div>
 		</div>
 	</div>
 	<div class="container-fluid footer">
 		&copy; 2017 - My Tunes
 	</div>
-</body>
 </html>

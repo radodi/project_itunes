@@ -61,8 +61,119 @@ function login_user($email, $password, $conn){
     			$_SESSION['first_name'] = $row['first_name'];
     			$_SESSION['last_name'] = $row['last_name'];
     			$_SESSION['email'] = $row['email'];
+    			$_SESSION['user_picture'] = $row['picture'];
     			header('Location: http://localhost/project_itunes/');
     		}
     	}
 	}
+}
+//RESIZE IMAGE
+function resize_image($thumbSize, $target_file) {
+//Get Mime 
+$info = getimagesize($target_file);
+$mime = $info['mime'];
+    switch ($mime) {
+            case 'image/jpeg':
+                    $image_create_func = 'imagecreatefromjpeg';
+                    $image_save_func = 'imagejpeg';
+                    $new_image_ext = 'jpg';
+                    break;
+
+            case 'image/png':
+                    $image_create_func = 'imagecreatefrompng';
+                    $image_save_func = 'imagepng';
+                    $new_image_ext = 'png';
+                    break;
+
+            case 'image/gif':
+                    $image_create_func = 'imagecreatefromgif';
+                    $image_save_func = 'imagegif';
+                    $new_image_ext = 'gif';
+                    break;
+
+            default: 
+                    throw new Exception('Unknown image type.');
+    }
+
+//getting the image dimensions
+list($width, $height) = getimagesize($target_file);
+//saving the image into memory (for manipulation with GD Library)
+$myImage = $image_create_func($target_file);
+// calculating the part of the image to use for thumbnail
+if ($width > $height) {
+  $y = 0;
+  $x = ($width - $height) / 2;
+  $smallestSide = $height;
+} else {
+  $x = 0;
+  $y = ($height - $width) / 2;
+  $smallestSide = $width;
+}
+// copying the part into thumbnail
+$thumb = imagecreatetruecolor($thumbSize, $thumbSize);
+imagecopyresampled($thumb, $myImage, 0, 0, $x, $y, $thumbSize, $thumbSize, $smallestSide, $smallestSide);
+$image_save_func($thumb, $target_file);
+return true;
+}
+//END RESIZE IMAGE
+
+//IMAGE UPLOAD
+function upload_user_image($conn){
+$target_dir = "img/users/" . $_SESSION['user_id'] . "/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 1;
+$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+// Check if image file is a actual image or fake image
+if(isset($_POST["submit"]) && isset($_FILES['file'])) {
+    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        $GLOBALS['picture_err'] = '<div class="msg"><i class="material-icons">error_outline</i>File is not an image!</div>';
+        $uploadOk = 0;
+    }
+}
+// Check file size
+if ($_FILES["fileToUpload"]["size"] > 61440000) {
+    $GLOBALS['picture_err'] .= '<div class="msg"><i class="material-icons">error_outline</i>Sorry, your file is too large!</div>';
+    $uploadOk = 0;
+}
+// Allow certain file formats
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+&& $imageFileType != "gif" ) {
+    $GLOBALS['picture_err'] = '<div class="msg"><i class="material-icons">error_outline</i>Sorry, only JPG, JPEG, PNG & GIF files are allowed.!</div>';
+    $uploadOk = 0;
+}
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+    $GLOBALS['picture_err'] .= '<div class="msg"><i class="material-icons">error_outline</i>Sorry, your file was not uploaded!</div>';
+// if everything is ok, try to upload file
+} else {
+	if (!file_exists($target_dir)) {
+		mkdir($target_dir, 0700);
+	}
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+        if(resize_image(100, $target_file)) {
+        	$q = "UPDATE `users` SET `picture`='$target_file' WHERE `user_id`='" . $_SESSION['user_id'] . "'";
+        	mysqli_query($conn, $q);
+        	header('Location: http://localhost/project_itunes/edit_user.php');
+        } else {
+        	$GLOBALS['picture_err'] = '<div class="msg"><i class="material-icons">error_outline</i>Error Resize Image!</div>';
+        }
+
+    } else {
+       $GLOBALS['picture_err'] = '<div class="msg"><i class="material-icons">error_outline</i>Sorry, your file was not uploaded!</div>';
+    }
+}
+}
+//END IMAGE UPLOAD
+
+// SET USER_IMAGE SESSION
+function show_user_image($conn) {
+	$q = "SELECT `picture` FROM `users` WHERE `user_id` ='" . $_SESSION['user_id'] . "'";
+	$res = mysqli_query($conn, $q);
+	$row = mysqli_fetch_assoc($res);
+	echo $row['picture'];
 }

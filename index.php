@@ -3,6 +3,8 @@ session_start();
 if (!isset($_SESSION['user_id'])) {
 	header('Location: login.php');
 }
+include 'includes/db_connect.php';
+include 'includes/functions.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,7 +33,7 @@ if (!isset($_SESSION['user_id'])) {
 		<div class="row">
 			<div class="col-md-4">
 				<div class="box">
-					<a href="index.php"><img src="img/logo.png" alt="My Tunes Logo"></a>
+					<a href="http://localhost/project_itunes/"><img src="img/logo.png" alt="My Tunes Logo"></a>
 					<audio id="player"></audio>
 				</div>
 				<div class="box">
@@ -54,7 +56,7 @@ if (!isset($_SESSION['user_id'])) {
 					<div><a href="logout.php"><i class="material-icons">power_settings_new</i>Logout</a></div>
 				</div>
 				<div class="box thumbnail avatar">
-					<img src="img/user_default.png" alt="User Picture">
+					<img src="<?php show_user_image($conn); ?>" alt="User Picture">
 				</div>
 			</div>
 		</div>
