@@ -82,10 +82,13 @@ include 'includes/functions.php';
 			<?php
 			if (isset($_FILES['fileToUpload'])) { upload_user_image($conn); }
 			if (isset($picture_err)) { echo $picture_err; unset($GLOBALS['picture_err']); }
+			if (isset($_POST['update'])) {
+				update_user_info($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['password'], $_POST['password_re'], $conn, true);
+			}
 			?>
 		</div>
 		<div class="col-md-6">
-			<form class="white-form" action="login.php" method="post">
+			<form class="white-form" action="edit_user.php" method="post">
 				<div class="form-group">
 					<label for="first_name">First Name</label>
 					<input type="text" class="form-control input-sm" name="first_name" id="first_name" value="<?php if (isset($_SESSION['first_name'])) { echo $_SESSION['first_name']; } ?>">
@@ -112,7 +115,7 @@ include 'includes/functions.php';
 					<?php if (isset($password_err_re)) { echo $password_err_re; } ?>
 				</div>
 				<div class="form-group">
-					<input type="submit" class="btn btn-default" name="reg" value="Update">
+					<input type="submit" class="btn btn-default" name="update" value="Update">
 				</div>
 			</form>
 		</div>

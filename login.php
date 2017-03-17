@@ -7,7 +7,7 @@ if (isset($_SESSION['user_id'])) {
 include 'includes/db_connect.php';
 include 'includes/functions.php';
 if (isset($_POST['reg'])) {
-	register_user($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['password'], $_POST['password_re'], $conn);
+	update_user_info($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['password'], $_POST['password_re'], $conn);
 } elseif (isset($_POST['log'])) {
 	login_user($_POST['email'], $_POST['password'], $conn);
 }
