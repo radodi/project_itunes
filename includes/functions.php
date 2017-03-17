@@ -13,7 +13,7 @@ function update_user_info($first_name, $last_name, $email, $password, $password_
 	} else {
 		unset($GLOBALS['email_err']);
 		if ($update == false) {
-			$q = "SELECT `email` FROM `users` WHERE `email` = '$email'";
+			$q = "SELECT `email` FROM `users` WHERE `email` = '$email' AND `date_deleted` IS NULL";
 			$res = mysqli_query($conn, $q);
 			if (mysqli_num_rows($res) !==0) {
 				$error = true;
@@ -86,7 +86,7 @@ function update_user_info($first_name, $last_name, $email, $password, $password_
 	}
 }
 
-//User Log in
+//USER LOG IN
 function login_user($email, $password, $conn){
 	//check e-mail
 	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -94,7 +94,7 @@ function login_user($email, $password, $conn){
 		$GLOBALS['login_err'] = '<div class="msg"><i class="material-icons">error_outline</i> Invalid email format!</div>';
 	} else {
 		unset($GLOBALS['email_err']);
-		$q = "SELECT `email` FROM `users` WHERE `email` = '$email'";
+		$q = "SELECT `email` FROM `users` WHERE `email` = '$email' AND `date_deleted` IS NULL";
 		$res = mysqli_query($conn, $q);
 		if (mysqli_num_rows($res) == 0) {
 			$GLOBALS['login_err'] = '<div class="msg"><i class="material-icons">error_outline</i> This e-mail address is not registered!</div>';
@@ -115,6 +115,32 @@ function login_user($email, $password, $conn){
 		}
 	}
 }
+//DELETE USER
+function delete_user($user_name, $password, $conn){
+	//check empty username and pass 
+	if (empty($user_name)) {
+		$error = true;
+		$GLOBALS['uname_err'] = '<div class="msg"><i class="material-icons">error_outline</i> Enter Username!</div>';
+	} 
+	if (empty($password)) {
+		$error = true;
+		$GLOBALS['pwd_err'] = '<div class="msg"><i class="material-icons">error_outline</i> Enter Password!</div>';
+	}
+	//check username and pass match and delete accoumt
+	if (!isset($error)) {
+		$q = "SELECT * FROM `users` WHERE `user_name` = '$user_name' AND `password` = '". md5($password) . "' AND `user_id` = '" . $_SESSION['user_id'] . "' AND `date_deleted` is NULL";
+		$res = mysqli_query($conn, $q);
+		if (mysqli_num_rows($res) !== 0) {
+			$today = date('Y-m-d');
+			$q = "UPDATE `users` SET `date_deleted`= '$today' WHERE `user_id` = '" . $_SESSION['user_id'] . "' AND `user_name` = '$user_name' AND `password`='" . md5($password) . "' AND `date_deleted` IS NULL";
+			$res = mysqli_query($conn, $q);
+			header('Location: logout.php');
+		} else {
+			$GLOBALS['del_err'] = '<div class="msg"><i class="material-icons">error_outline</i> Username and password not match!</div>';
+		}
+	}
+}
+
 //RESIZE IMAGE
 function resize_image($thumbSize, $target_file) {
 //Get Mime 

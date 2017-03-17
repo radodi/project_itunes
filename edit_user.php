@@ -86,6 +86,29 @@ if (isset($_GET['action'])) {
 			</div>
 			</form>
 			<?php
+			if (isset($_POST['del'])) {
+				delete_user($_POST['user_name'], $_POST['password'], $conn);
+				unset($_POST);
+			}
+			?>
+			<form class="white-form" action="edit_user.php" method="post">
+				<h4>Delete Account</h4>
+				<?php if (isset($del_err)) { echo $del_err; } ?>
+				<div class="form-group">
+						<label for="user_name">Type your User Name</label>
+						<input type="text" class="form-control input-sm" name="user_name" id="user_name">
+					<?php if (isset($uname_err)) { echo $uname_err; } ?>
+				</div>
+				<div class="form-group">
+					<label for="password">Type your Password</label>
+					<input type="password" class="form-control input-sm" name="password" id="password">
+					<?php if (isset($pwd_err)) { echo $pwd_err; } ?>
+				</div>
+				<div class="form-group">
+					<input type="submit" class="btn btn-default" name="del" value="Delete">
+				</div>
+			</form>
+			<?php
 			if (isset($_FILES['fileToUpload'])) { upload_user_image($conn); }
 			if (isset($picture_err)) { echo $picture_err; unset($GLOBALS['picture_err']); }
 			if (isset($_POST['upd'])) {
