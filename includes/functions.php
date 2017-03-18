@@ -20,7 +20,7 @@ function update_user_info($first_name, $last_name, $email, $password, $password_
 				$GLOBALS['email_err'] = '<div class="msg"><i class="material-icons">error_outline</i> E-mail address: ' . $email . ' is already registered!</div>';
 			}
 		} else {
-			$q = "SELECT `email` FROM `users` WHERE `email` = '$email' AND `user_id` != " . $_SESSION['user_id'] . "";
+			$q = "SELECT `email` FROM `users` WHERE `email` = '$email' AND `user_id` != " . $_SESSION['user_id'] . " AND `date_deleted` IS NULL";
 			$res = mysqli_query($conn, $q);
 			if (mysqli_num_rows($res) !==0) {
 				$error = true;
@@ -82,6 +82,8 @@ function update_user_info($first_name, $last_name, $email, $password, $password_
 				$_SESSION['user_name'] = $row['user_name'];
 				$_SESSION['email'] = $row['email'];
 			}
+		} else {
+			$GLOBALS['regmsg'] = '<div class="msg"><i class="material-icons">info_outline</i>ERROR: Contact the system administrator!</div>';
 		}
 	}
 }
@@ -258,4 +260,64 @@ function default_user_image($conn){
 	mysqli_query($conn, $q);
 	unset($_GET);
 	header('Location: edit_user.php');
+}
+
+//ADD ARTIST
+function add_artist($artist_name, $conn) {
+	//check lenght
+	if (strlen($artist_name) > 60) {
+		$GLOBALS['artist_err'] = '<div class="msg"><i class="material-icons">error_outline</i> Artist Name can be max <strong>60</strong> characters!</div>';
+		$error = true;
+	}
+	//check if exists
+	$q = "SELECT * FROM `artists` WHERE `artist_name`='$artist_name' AND `date_deleted` IS NULL";
+	$res = mysqli_query($conn, $q);
+	if (mysqli_num_rows($res) !== 0) {
+		$GLOBALS['artist_err'] = '<div class="msg"><i class="material-icons">error_outline</i> Artist <strong>' . $artist_name . '</strong> already exists!</div>';
+	} else {
+		if (!isset($error)) {
+			$q = "INSERT INTO `artists` (`artist_name`) VALUES ('$artist_name')";
+			if (mysqli_query($conn, $q)) {
+				$GLOBALS['artist_msg'] = '<div class="msg"><i class="material-icons">error_outline</i> Artist <strong>' . $artist_name . '</strong> added successful!</div>';
+			}
+		}
+	}
+}
+//ADD SONG
+function upload_song($conn) {
+	$target_dir = "audio/";
+	$target_file = $target_dir . basename($_FILES["mp3"]["name"]);
+	$fileType = pathinfo($target_file,PATHINFO_EXTENSION);
+	if (empty($_POST['song_name'])) {
+		$error = true;
+		$GLOBALS['song_err'] = '<div class="msg"><i class="material-icons">error_outline</i> Enter song title!</div>';
+	}
+	if ($_POST['artist'] == "") {
+		$error = true;
+		$GLOBALS['artist_err'] = '<div class="msg"><i class="material-icons">error_outline</i> Select an artist!</div>';
+	}
+	// Check file size
+	if ($_FILES["mp3"]["size"] > 102400000) {
+		$GLOBALS['file_err'] = '<div class="msg"><i class="material-icons">error_outline</i>Sorry, your file is too large!</div>';
+		$error = true;
+	}
+	// Allow certain file formats
+	if($fileType != "mp3") {
+		$GLOBALS['file_err'] = '<div class="msg"><i class="material-icons">error_outline</i>Sorry, only MP3 files are allowed.!</div>';
+		$error = true;
+	}
+	if (isset($error)) {
+	$GLOBALS['song_msg'] = '<div class="msg"><i class="material-icons">error_outline</i>Sorry, your file was not uploaded!</div>';
+	// if everything is ok, try to upload file
+	} else {
+		$target_file = $target_dir . date('YmdHis') . "." . $fileType;
+		if (move_uploaded_file($_FILES["mp3"]["tmp_name"], $target_file)) {
+			$today = date('Y-m-d');
+			$q = "INSERT INTO `songs`(`sonag_name`, `artist_id`, `upload_date`, `user_id`, `song_url`) VALUES ('" . $_POST['song_name'] . "', '" . $_POST['artist'] . "', '$today', '" . $_SESSION['user_id'] . "', '$target_file')";
+			mysqli_query($conn, $q);
+			$GLOBALS['song_msg'] = '<div class="msg"><i class="material-icons">error_outline</i> The file has been uploaded successfully.</div>';
+		} else {
+			$GLOBALS['song_msg'] = '<div class="msg"><i class="material-icons">error_outline</i> Sorry, your file was not uploaded!</div>';
+		}
+	}
 }

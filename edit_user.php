@@ -8,6 +8,7 @@ include 'includes/functions.php';
 if (isset($_GET['action'])) {
 	default_user_image($conn);
 }
+if (isset($_FILES['fileToUpload'])) { upload_user_image($conn); }
 ?>
 <!DOCTYPE html>
 <html>
@@ -81,7 +82,7 @@ if (isset($_GET['action'])) {
 					<input class="form-control-file" type="file" name="fileToUpload" id="fileToUpload">
 				</div>
 				<div class="form-group">
-					<input class="btn btn-default" type="submit" value="Upload Image" name="submit">
+					<button type="submit" class="btn btn-default" name="submit"><i class="material-icons">file_upload</i> Upload</button>
 				</div>
 			</div>
 			</form>
@@ -105,11 +106,10 @@ if (isset($_GET['action'])) {
 					<?php if (isset($pwd_err)) { echo $pwd_err; } ?>
 				</div>
 				<div class="form-group">
-					<input type="submit" class="btn btn-default" name="del" value="Delete">
+					<button type="submit" class="btn btn-default" name="del"><i class="material-icons">delete</i> Delete</button>
 				</div>
 			</form>
 			<?php
-			if (isset($_FILES['fileToUpload'])) { upload_user_image($conn); }
 			if (isset($picture_err)) { echo $picture_err; unset($GLOBALS['picture_err']); }
 			if (isset($_POST['upd'])) {
 				update_user_info($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['password'], $_POST['password_re'], $_POST['user_name'], $conn, true);
@@ -156,7 +156,7 @@ if (isset($_GET['action'])) {
 					<?php if (isset($password_err_re)) { echo $password_err_re; } ?>
 				</div>
 				<div class="form-group">
-					<input type="submit" class="btn btn-default" name="upd" value="Update">
+					<button type="submit" class="btn btn-default" name="upd"><i class="material-icons">update</i> Update</button>
 				</div>
 			</form>
 		</div>
