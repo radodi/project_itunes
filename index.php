@@ -64,27 +64,13 @@ include 'includes/functions.php';
 	<div class="container">
 		<!-- Songs Header -->
 		<div class="row tracks">
-			<div class="box b-r art">
-				<i class="material-icons">blur_on</i> Album art
-			</div>
-			<div class="box b-r song">
-				<a class="sort_dl" href=""><i class="material-icons">headset</i> Song</a>
-			</div>
-			<div class="box b-r artist">
-				<a class="sort_dl" href=""><i class="material-icons">album</i> Artist</a>
-			</div>
-			<div class="box b-r date">
-				<a class="sort_dl" href=""><i class="material-icons">event</i> Date</a>
-			</div>
-			<div class="box b-r user">
-				<a class="sort_dl" href=""><i class="material-icons">person_pin</i> User</a>
-			</div>
-			<div class="box b-r dw">
-				<a class="sort_dl" href=""><i class="material-icons">cloud_download</i> Downloads</a>
-			</div>
-			<div class="box rating">
-				<a class="sort_dl" href=""><i class="material-icons">favorite_border</i> Rating</a>
-			</div>
+		<?php 
+		if (isset($_GET['order'])) {
+			print_track_head($_GET['order'], $_GET['by']);
+		} else {
+			print_track_head('ASC', 'date');
+		}
+		?>
 		</div>
 		<!-- END Songs Header -->
 		<!-- Song -->

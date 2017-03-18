@@ -321,3 +321,314 @@ function upload_song($conn) {
 		}
 	}
 }
+
+//Print SONGS HEADER
+function print_track_head($order, $by){
+	if ($order == 'ASC') {
+		switch ($by) {
+			case 'song':
+			echo '
+			<div class="box b-r art">
+				<i class="material-icons">blur_on</i> Album art
+			</div>
+			<div class="box b-r song">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=song"><i class="material-icons">headset</i> Song</a>
+			</div>
+			<div class="box b-r artist">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=artist"><i class="material-icons">album</i> Artist</a>
+			</div>
+			<div class="box b-r date">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=date"><i class="material-icons">event</i> Date</a>
+			</div>
+			<div class="box b-r user">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=user"><i class="material-icons">person_pin</i> User</a>
+			</div>
+			<div class="box b-r dw">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+			</div>
+			<div class="box rating">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+			</div>
+			';
+			break;
+			case 'artist':
+			echo '
+			<div class="box b-r art">
+				<i class="material-icons">blur_on</i> Album art
+			</div>
+			<div class="box b-r song">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=song"><i class="material-icons">headset</i> Song</a>
+			</div>
+			<div class="box b-r artist">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESCesc&by=artist"><i class="material-icons">album</i> Artist</a>
+			</div>
+			<div class="box b-r date">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=date"><i class="material-icons">event</i> Date</a>
+			</div>
+			<div class="box b-r user">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=user"><i class="material-icons">person_pin</i> User</a>
+			</div>
+			<div class="box b-r dw">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+			</div>
+			<div class="box rating">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+			</div>
+			';
+			break;
+			case 'user':
+			echo '
+			<div class="box b-r art">
+				<i class="material-icons">blur_on</i> Album art
+			</div>
+			<div class="box b-r song">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=song"><i class="material-icons">headset</i> Song</a>
+			</div>
+			<div class="box b-r artist">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=artist"><i class="material-icons">album</i> Artist</a>
+			</div>
+			<div class="box b-r date">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=date"><i class="material-icons">event</i> Date</a>
+			</div>
+			<div class="box b-r user">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=user"><i class="material-icons">person_pin</i> User</a>
+			</div>
+			<div class="box b-r dw">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+			</div>
+			<div class="box rating">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+			</div>
+			';
+			break;
+			case 'downloads':
+			echo '
+			<div class="box b-r art">
+				<i class="material-icons">blur_on</i> Album art
+			</div>
+			<div class="box b-r song">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=song"><i class="material-icons">headset</i> Song</a>
+			</div>
+			<div class="box b-r artist">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=artist"><i class="material-icons">album</i> Artist</a>
+			</div>
+			<div class="box b-r date">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=date"><i class="material-icons">event</i> Date</a>
+			</div>
+			<div class="box b-r user">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=user"><i class="material-icons">person_pin</i> User</a>
+			</div>
+			<div class="box b-r dw">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+			</div>
+			<div class="box rating">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+			</div>
+			';
+			break;
+			case 'rating':
+			echo '
+			<div class="box b-r art">
+				<i class="material-icons">blur_on</i> Album art
+			</div>
+			<div class="box b-r song">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=song"><i class="material-icons">headset</i> Song</a>
+			</div>
+			<div class="box b-r artist">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=artist"><i class="material-icons">album</i> Artist</a>
+			</div>
+			<div class="box b-r date">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=date"><i class="material-icons">event</i> Date</a>
+			</div>
+			<div class="box b-r user">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=user"><i class="material-icons">person_pin</i> User</a>
+			</div>
+			<div class="box b-r dw">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+			</div>
+			<div class="box rating">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+			</div>
+			';
+			break;
+			default:
+			echo '
+			<div class="box b-r art">
+				<i class="material-icons">blur_on</i> Album art
+			</div>
+			<div class="box b-r song">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=song"><i class="material-icons">headset</i> Song</a>
+			</div>
+			<div class="box b-r artist">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=artist"><i class="material-icons">album</i> Artist</a>
+			</div>
+			<div class="box b-r date">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=date"><i class="material-icons">event</i> Date</a>
+			</div>
+			<div class="box b-r user">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=user"><i class="material-icons">person_pin</i> User</a>
+			</div>
+			<div class="box b-r dw">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+			</div>
+			<div class="box rating">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+			</div>
+			';
+			break;
+		}
+	} else {
+		switch ($by) {
+			case 'song':
+			echo '
+			<div class="box b-r art">
+				<i class="material-icons">blur_on</i> Album art
+			</div>
+			<div class="box b-r song">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=song"><i class="material-icons">headset</i> Song</a>
+			</div>
+			<div class="box b-r artist">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=artist"><i class="material-icons">album</i> Artist</a>
+			</div>
+			<div class="box b-r date">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=date"><i class="material-icons">event</i> Date</a>
+			</div>
+			<div class="box b-r user">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=user"><i class="material-icons">person_pin</i> User</a>
+			</div>
+			<div class="box b-r dw">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+			</div>
+			<div class="box rating">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+			</div>
+			';
+			break;
+			case 'artist':
+			echo '
+			<div class="box b-r art">
+				<i class="material-icons">blur_on</i> Album art
+			</div>
+			<div class="box b-r song">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=song"><i class="material-icons">headset</i> Song</a>
+			</div>
+			<div class="box b-r artist">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=artist"><i class="material-icons">album</i> Artist</a>
+			</div>
+			<div class="box b-r date">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=date"><i class="material-icons">event</i> Date</a>
+			</div>
+			<div class="box b-r user">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=user"><i class="material-icons">person_pin</i> User</a>
+			</div>
+			<div class="box b-r dw">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+			</div>
+			<div class="box rating">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+			</div>
+			';
+			break;
+			case 'user':
+			echo '
+			<div class="box b-r art">
+				<i class="material-icons">blur_on</i> Album art
+			</div>
+			<div class="box b-r song">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=song"><i class="material-icons">headset</i> Song</a>
+			</div>
+			<div class="box b-r artist">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=artist"><i class="material-icons">album</i> Artist</a>
+			</div>
+			<div class="box b-r date">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=date"><i class="material-icons">event</i> Date</a>
+			</div>
+			<div class="box b-r user">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=user"><i class="material-icons">person_pin</i> User</a>
+			</div>
+			<div class="box b-r dw">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+			</div>
+			<div class="box rating">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+			</div>
+			';
+			break;
+			case 'downloads':
+			echo '
+			<div class="box b-r art">
+				<i class="material-icons">blur_on</i> Album art
+			</div>
+			<div class="box b-r song">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=song"><i class="material-icons">headset</i> Song</a>
+			</div>
+			<div class="box b-r artist">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=artist"><i class="material-icons">album</i> Artist</a>
+			</div>
+			<div class="box b-r date">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=date"><i class="material-icons">event</i> Date</a>
+			</div>
+			<div class="box b-r user">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=user"><i class="material-icons">person_pin</i> User</a>
+			</div>
+			<div class="box b-r dw">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+			</div>
+			<div class="box rating">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+			</div>
+			';
+			break;
+			case 'rating':
+			echo '
+			<div class="box b-r art">
+				<i class="material-icons">blur_on</i> Album art
+			</div>
+			<div class="box b-r song">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=song"><i class="material-icons">headset</i> Song</a>
+			</div>
+			<div class="box b-r artist">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=artist"><i class="material-icons">album</i> Artist</a>
+			</div>
+			<div class="box b-r date">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=date"><i class="material-icons">event</i> Date</a>
+			</div>
+			<div class="box b-r user">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=user"><i class="material-icons">person_pin</i> User</a>
+			</div>
+			<div class="box b-r dw">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+			</div>
+			<div class="box rating">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+			</div>
+			';
+			break;
+			default:
+			echo '
+			<div class="box b-r art">
+				<i class="material-icons">blur_on</i> Album art
+			</div>
+			<div class="box b-r song">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=song"><i class="material-icons">headset</i> Song</a>
+			</div>
+			<div class="box b-r artist">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=artist"><i class="material-icons">album</i> Artist</a>
+			</div>
+			<div class="box b-r date">
+				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=date"><i class="material-icons">event</i> Date</a>
+			</div>
+			<div class="box b-r user">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=user"><i class="material-icons">person_pin</i> User</a>
+			</div>
+			<div class="box b-r dw">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+			</div>
+			<div class="box rating">
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+			</div>
+			';
+			break;
+		}
+	}
+}

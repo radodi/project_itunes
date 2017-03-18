@@ -89,7 +89,7 @@ body {
 .rating {
 	width: 90px;
 }
-.rating .material-icons {
+.track .rating .material-icons {
 	font-size: 12px;
 	width: 12px;
 	overflow: hidden;
