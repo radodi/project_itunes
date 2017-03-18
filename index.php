@@ -88,11 +88,7 @@ include 'includes/functions.php';
 					<div class="box b-r b-b user">radodi</div>
 					<div class="box b-r b-b dw">325</div>
 					<div class="box b-b rating">
-						<i class="material-icons">star_rate</i>
-						<i class="material-icons">star_rate</i>
-						<i class="material-icons">star_rate</i>
-						<i class="material-icons">star_rate</i>
-						<i class="material-icons grey">star_rate</i>
+						<?php show_rating(3, $conn) ?>
 					</div>
 				</div>
 				<div class="row">
@@ -116,7 +112,7 @@ include 'includes/functions.php';
 		<!-- END Song -->
 	</div>
 	<div class="container-fluid footer">
-		&copy; 2017 - My Tunes
+		&copy; 2017 - My Tunes 
 	</div>
 </body>
 </html>

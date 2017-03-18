@@ -632,3 +632,17 @@ function print_track_head($order, $by){
 		}
 	}
 }
+//Print RATING FUNCTION
+function show_rating($song_id, $conn){
+	$q = "SELECT `average_rate` FROM `songs` WHERE `song_id` = '$song_id'";
+	$res = mysqli_query($conn, $q);
+	$row = mysqli_fetch_assoc($res);
+	$rate = $row['average_rate'];
+	for ($i=0; $i < 5; $i++) { 
+		if ($rate >= $i+1) {
+			echo '<i class="material-icons">star_rate</i>';
+		} else {
+			echo '<i class="material-icons grey">star_rate</i>';
+		}
+	}
+}
