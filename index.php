@@ -74,41 +74,8 @@ include 'includes/functions.php';
 		</div>
 		<!-- END Songs Header -->
 		<!-- Song -->
-		<div class="row track">
-			<div class="box art">
-				<div class="thumbnail">
-					<img src="img/album_art.png" alt="Album Art">
-				</div>
-			</div>
-			<div class="box">
-				<div class="row">
-					<div class="box b-r b-b song">Could I have</div>
-					<div class="box b-r b-b artist"> Enrique</div>
-					<div class="box b-r b-b date"> 2017-03-14</div>
-					<div class="box b-r b-b user">radodi</div>
-					<div class="box b-r b-b dw">325</div>
-					<div class="box b-b rating">
-						<?php show_rating(3, $conn) ?>
-					</div>
-				</div>
-				<div class="row">
-					<div class="box toggle">
-						<i class="material-icons player" onclick="document.getElementById('player').src='audio/Whitney Houston - Could I Have This Kiss Forever audio.m4a';document.getElementById('player').load(); document.getElementById('player').play()">play_arrow</i>
-						<i class="material-icons player" onclick="document.getElementById('player').pause();document.getElementById('player').currentTime = 0;">stop</i>
-						<i class="material-icons player">cloud_download</i>
-					</div>
-					<div class="box toggle">
-						<span class="inverse">
-							<i class="material-icons player">star_rate</i>
-							<i class="material-icons player">star_rate</i>
-							<i class="material-icons player">star_rate</i>
-							<i class="material-icons player">star_rate</i>
-							<i class="material-icons player">star_rate</i>
-						</span>
-					</div>
-				</div>
-			</div>
-		</div>
+		
+		<?php show_songs('DESC', 'song', $conn); ?>
 		<!-- END Song -->
 	</div>
 	<div class="container-fluid footer">

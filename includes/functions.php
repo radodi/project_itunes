@@ -313,7 +313,7 @@ function upload_song($conn) {
 		$target_file = $target_dir . date('YmdHis') . "." . $fileType;
 		if (move_uploaded_file($_FILES["mp3"]["tmp_name"], $target_file)) {
 			$today = date('Y-m-d');
-			$q = "INSERT INTO `songs`(`sonag_name`, `artist_id`, `upload_date`, `user_id`, `song_url`) VALUES ('" . $_POST['song_name'] . "', '" . $_POST['artist'] . "', '$today', '" . $_SESSION['user_id'] . "', '$target_file')";
+			$q = "INSERT INTO `songs`(`song_name`, `artist_id`, `upload_date`, `user_id`, `song_url`) VALUES ('" . $_POST['song_name'] . "', '" . $_POST['artist'] . "', '$today', '" . $_SESSION['user_id'] . "', '$target_file')";
 			mysqli_query($conn, $q);
 			$GLOBALS['song_msg'] = '<div class="msg"><i class="material-icons">error_outline</i> The file has been uploaded successfully.</div>';
 		} else {
@@ -638,11 +638,99 @@ function show_rating($song_id, $conn){
 	$res = mysqli_query($conn, $q);
 	$row = mysqli_fetch_assoc($res);
 	$rate = $row['average_rate'];
+	$print_rate = '';
 	for ($i=0; $i < 5; $i++) { 
 		if ($rate >= $i+1) {
-			echo '<i class="material-icons">star_rate</i>';
+			$print_rate .='<i class="material-icons">star_rate</i>';
 		} else {
-			echo '<i class="material-icons grey">star_rate</i>';
+			$print_rate .='<i class="material-icons grey">star_rate</i>';
 		}
+	}
+	$GLOBALS['print_rate'] = $print_rate;
+}
+//Print SONGS FUNCTION
+function show_songs($order, $by, $conn){
+	switch ($order) {
+		case 'DESC':
+			switch ($by) {
+				case 'song':
+				$q = "SELECT * FROM songs
+				JOIN artists ON songs.artist_id = artists.artist_id
+				JOIN users ON songs.user_id = users.user_id
+				WHERE songs.date_deleted IS NULL ORDER BY `song_name` DESC";
+				$res = mysqli_query($conn, $q);
+				if (mysqli_num_rows($res) !== 0) {
+					while ($row = mysqli_fetch_assoc($res)) {
+						echo '<div class="row track">
+			<div class="box art">
+				<div class="thumbnail">
+					<img src="' . $row['album_art'] . '" alt="Album Art">
+				</div>
+			</div>
+			<div class="box">
+				<div class="row">
+					<div class="box b-r b-b song">' . $row['song_name'] . '</div>
+					<div class="box b-r b-b artist">' . $row['artist_name'] . '</div>
+					<div class="box b-r b-b date">' . $row['upload_date'] . '</div>
+					<div class="box b-r b-b user">' . $row['user_name'] . '</div>
+					<div class="box b-r b-b dw">' . $row['downloads'] . '</div>
+					<div class="box b-b rating">' . show_rating($row['song_id'], $conn) . $GLOBALS['print_rate'] . '</div>
+				</div>
+				<div class="row">
+					<div class="box toggle">
+						<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+						<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+						<i class="material-icons player">cloud_download</i>
+					</div>
+					<div class="box toggle">
+						<span class="inverse">
+							<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
+							<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
+							<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
+							<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
+							<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>';
+					}
+				}
+					break;
+				case 'artist':
+				$q = "SELECT * FROM songs
+				JOIN artists ON songs.artist_id = artists.artist_id
+				JOIN users ON songs.user_id = users.user_id
+				WHERE songs.date_deleted IS NULL ORDER BY `artist_name` DESC";
+					break;
+				case 'user':
+				$q = "SELECT * FROM songs
+				JOIN artists ON songs.artist_id = artists.artist_id
+				JOIN users ON songs.user_id = users.user_id
+				WHERE songs.date_deleted IS NULL ORDER BY `user_name` DESC";
+					break;
+				case 'downloads':
+				$q = "SELECT * FROM songs
+				JOIN artists ON songs.artist_id = artists.artist_id
+				JOIN users ON songs.user_id = users.user_id
+				WHERE songs.date_deleted IS NULL ORDER BY `downloads` DESC";
+					break;
+				case 'rating':
+				$q = "SELECT * FROM songs
+				JOIN artists ON songs.artist_id = artists.artist_id
+				JOIN users ON songs.user_id = users.user_id
+				WHERE songs.date_deleted IS NULL ORDER BY `average_rate` DESC";
+					break;
+				default:
+				$q = "SELECT * FROM songs
+				JOIN artists ON songs.artist_id = artists.artist_id
+				JOIN users ON songs.user_id = users.user_id
+				WHERE songs.date_deleted IS NULL ORDER BY `upload_date` DESC";
+					break;
+			}
+			break;
+		default:
+			
+			break;
 	}
 }

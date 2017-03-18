@@ -131,10 +131,10 @@ body {
     margin: 0;
     padding: 0px;
     border-radius: 50%;
-    color: #009e9c;
     cursor: pointer;
     user-select: none;
     vertical-align: middle;
+    overflow: hidden;
 }
 .toggle{
 	padding: 15px;
@@ -143,8 +143,11 @@ body {
  	direction: rtl;
  	display: inline-block; /* inline-block to keep parent at the left of window */
 }
-.inverse i:hover, .inverse i:hover ~ i{ /* On hover target it's "previous";) elements */
-	color:gold;
+.inverse a {
+	color: #009e9c;
+}
+.inverse a:hover, .inverse a:hover ~ a{ /* On hover target it's "previous";) elements */
+	color: #FFD700;
 }
 .footer {
 	text-align: center;
