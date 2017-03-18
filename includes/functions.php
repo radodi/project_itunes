@@ -360,7 +360,7 @@ function print_track_head($order, $by){
 				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=song"><i class="material-icons">headset</i> Song</a>
 			</div>
 			<div class="box b-r artist">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESCesc&by=artist"><i class="material-icons">album</i> Artist</a>
+				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=artist"><i class="material-icons">album</i> Artist</a>
 			</div>
 			<div class="box b-r date">
 				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=date"><i class="material-icons">event</i> Date</a>
@@ -648,7 +648,43 @@ function show_rating($song_id, $conn){
 	}
 	$GLOBALS['print_rate'] = $print_rate;
 }
-//Print SONGS FUNCTION
+//Print SONG
+function print_song(){
+	echo '<div class="row track">
+						<div class="box art">
+							<div class="thumbnail">
+								<img src="' . $row['album_art'] . '" alt="Album Art">
+							</div>
+						</div>
+						<div class="box">
+							<div class="row">
+								<div class="box b-r b-b song">' . $row['song_name'] . '</div>
+								<div class="box b-r b-b artist">' . $row['artist_name'] . '</div>
+								<div class="box b-r b-b date">' . $row['upload_date'] . '</div>
+								<div class="box b-r b-b user">' . $row['user_name'] . '</div>
+								<div class="box b-r b-b dw">' . $row['downloads'] . '</div>
+								<div class="box b-b rating">' . show_rating($row['song_id'], $conn) . $GLOBALS['print_rate'] . '</div>
+							</div>
+							<div class="row">
+								<div class="box toggle">
+									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+								</div>
+								<div class="box toggle">
+									<span class="inverse">
+										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>';
+}
+//Show SONGS FUNCTION
 function show_songs($order, $by, $conn){
 	switch ($order) {
 		case 'DESC':
@@ -662,38 +698,38 @@ function show_songs($order, $by, $conn){
 				if (mysqli_num_rows($res) !== 0) {
 					while ($row = mysqli_fetch_assoc($res)) {
 						echo '<div class="row track">
-			<div class="box art">
-				<div class="thumbnail">
-					<img src="' . $row['album_art'] . '" alt="Album Art">
-				</div>
-			</div>
-			<div class="box">
-				<div class="row">
-					<div class="box b-r b-b song">' . $row['song_name'] . '</div>
-					<div class="box b-r b-b artist">' . $row['artist_name'] . '</div>
-					<div class="box b-r b-b date">' . $row['upload_date'] . '</div>
-					<div class="box b-r b-b user">' . $row['user_name'] . '</div>
-					<div class="box b-r b-b dw">' . $row['downloads'] . '</div>
-					<div class="box b-b rating">' . show_rating($row['song_id'], $conn) . $GLOBALS['print_rate'] . '</div>
-				</div>
-				<div class="row">
-					<div class="box toggle">
-						<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
-						<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-						<i class="material-icons player">cloud_download</i>
-					</div>
-					<div class="box toggle">
-						<span class="inverse">
-							<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
-							<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
-							<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
-							<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
-							<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
-						</span>
-					</div>
-				</div>
-			</div>
-		</div>';
+						<div class="box art">
+							<div class="thumbnail">
+								<img src="' . $row['album_art'] . '" alt="Album Art">
+							</div>
+						</div>
+						<div class="box">
+							<div class="row">
+								<div class="box b-r b-b song">' . $row['song_name'] . '</div>
+								<div class="box b-r b-b artist">' . $row['artist_name'] . '</div>
+								<div class="box b-r b-b date">' . $row['upload_date'] . '</div>
+								<div class="box b-r b-b user">' . $row['user_name'] . '</div>
+								<div class="box b-r b-b dw">' . $row['downloads'] . '</div>
+								<div class="box b-b rating">' . show_rating($row['song_id'], $conn) . $GLOBALS['print_rate'] . '</div>
+							</div>
+							<div class="row">
+								<div class="box toggle">
+									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+								</div>
+								<div class="box toggle">
+									<span class="inverse">
+										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>';
 					}
 				}
 					break;
@@ -702,35 +738,490 @@ function show_songs($order, $by, $conn){
 				JOIN artists ON songs.artist_id = artists.artist_id
 				JOIN users ON songs.user_id = users.user_id
 				WHERE songs.date_deleted IS NULL ORDER BY `artist_name` DESC";
+				$res = mysqli_query($conn, $q);
+				if (mysqli_num_rows($res) !== 0) {
+					while ($row = mysqli_fetch_assoc($res)) {
+						echo '<div class="row track">
+						<div class="box art">
+							<div class="thumbnail">
+								<img src="' . $row['album_art'] . '" alt="Album Art">
+							</div>
+						</div>
+						<div class="box">
+							<div class="row">
+								<div class="box b-r b-b song">' . $row['song_name'] . '</div>
+								<div class="box b-r b-b artist">' . $row['artist_name'] . '</div>
+								<div class="box b-r b-b date">' . $row['upload_date'] . '</div>
+								<div class="box b-r b-b user">' . $row['user_name'] . '</div>
+								<div class="box b-r b-b dw">' . $row['downloads'] . '</div>
+								<div class="box b-b rating">' . show_rating($row['song_id'], $conn) . $GLOBALS['print_rate'] . '</div>
+							</div>
+							<div class="row">
+								<div class="box toggle">
+									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+								</div>
+								<div class="box toggle">
+									<span class="inverse">
+										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>';
+					}
+				}
 					break;
 				case 'user':
 				$q = "SELECT * FROM songs
 				JOIN artists ON songs.artist_id = artists.artist_id
 				JOIN users ON songs.user_id = users.user_id
 				WHERE songs.date_deleted IS NULL ORDER BY `user_name` DESC";
+				$res = mysqli_query($conn, $q);
+				if (mysqli_num_rows($res) !== 0) {
+					while ($row = mysqli_fetch_assoc($res)) {
+						echo '<div class="row track">
+						<div class="box art">
+							<div class="thumbnail">
+								<img src="' . $row['album_art'] . '" alt="Album Art">
+							</div>
+						</div>
+						<div class="box">
+							<div class="row">
+								<div class="box b-r b-b song">' . $row['song_name'] . '</div>
+								<div class="box b-r b-b artist">' . $row['artist_name'] . '</div>
+								<div class="box b-r b-b date">' . $row['upload_date'] . '</div>
+								<div class="box b-r b-b user">' . $row['user_name'] . '</div>
+								<div class="box b-r b-b dw">' . $row['downloads'] . '</div>
+								<div class="box b-b rating">' . show_rating($row['song_id'], $conn) . $GLOBALS['print_rate'] . '</div>
+							</div>
+							<div class="row">
+								<div class="box toggle">
+									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+								</div>
+								<div class="box toggle">
+									<span class="inverse">
+										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>';
+					}
+				}
 					break;
 				case 'downloads':
 				$q = "SELECT * FROM songs
 				JOIN artists ON songs.artist_id = artists.artist_id
 				JOIN users ON songs.user_id = users.user_id
 				WHERE songs.date_deleted IS NULL ORDER BY `downloads` DESC";
+				$res = mysqli_query($conn, $q);
+				if (mysqli_num_rows($res) !== 0) {
+					while ($row = mysqli_fetch_assoc($res)) {
+						echo '<div class="row track">
+						<div class="box art">
+							<div class="thumbnail">
+								<img src="' . $row['album_art'] . '" alt="Album Art">
+							</div>
+						</div>
+						<div class="box">
+							<div class="row">
+								<div class="box b-r b-b song">' . $row['song_name'] . '</div>
+								<div class="box b-r b-b artist">' . $row['artist_name'] . '</div>
+								<div class="box b-r b-b date">' . $row['upload_date'] . '</div>
+								<div class="box b-r b-b user">' . $row['user_name'] . '</div>
+								<div class="box b-r b-b dw">' . $row['downloads'] . '</div>
+								<div class="box b-b rating">' . show_rating($row['song_id'], $conn) . $GLOBALS['print_rate'] . '</div>
+							</div>
+							<div class="row">
+								<div class="box toggle">
+									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+								</div>
+								<div class="box toggle">
+									<span class="inverse">
+										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>';
+					}
+				}
 					break;
 				case 'rating':
 				$q = "SELECT * FROM songs
 				JOIN artists ON songs.artist_id = artists.artist_id
 				JOIN users ON songs.user_id = users.user_id
 				WHERE songs.date_deleted IS NULL ORDER BY `average_rate` DESC";
+				$res = mysqli_query($conn, $q);
+				if (mysqli_num_rows($res) !== 0) {
+					while ($row = mysqli_fetch_assoc($res)) {
+						echo '<div class="row track">
+						<div class="box art">
+							<div class="thumbnail">
+								<img src="' . $row['album_art'] . '" alt="Album Art">
+							</div>
+						</div>
+						<div class="box">
+							<div class="row">
+								<div class="box b-r b-b song">' . $row['song_name'] . '</div>
+								<div class="box b-r b-b artist">' . $row['artist_name'] . '</div>
+								<div class="box b-r b-b date">' . $row['upload_date'] . '</div>
+								<div class="box b-r b-b user">' . $row['user_name'] . '</div>
+								<div class="box b-r b-b dw">' . $row['downloads'] . '</div>
+								<div class="box b-b rating">' . show_rating($row['song_id'], $conn) . $GLOBALS['print_rate'] . '</div>
+							</div>
+							<div class="row">
+								<div class="box toggle">
+									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+								</div>
+								<div class="box toggle">
+									<span class="inverse">
+										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>';
+					}
+				}
 					break;
 				default:
 				$q = "SELECT * FROM songs
 				JOIN artists ON songs.artist_id = artists.artist_id
 				JOIN users ON songs.user_id = users.user_id
 				WHERE songs.date_deleted IS NULL ORDER BY `upload_date` DESC";
+				$res = mysqli_query($conn, $q);
+				if (mysqli_num_rows($res) !== 0) {
+					while ($row = mysqli_fetch_assoc($res)) {
+						echo '<div class="row track">
+						<div class="box art">
+							<div class="thumbnail">
+								<img src="' . $row['album_art'] . '" alt="Album Art">
+							</div>
+						</div>
+						<div class="box">
+							<div class="row">
+								<div class="box b-r b-b song">' . $row['song_name'] . '</div>
+								<div class="box b-r b-b artist">' . $row['artist_name'] . '</div>
+								<div class="box b-r b-b date">' . $row['upload_date'] . '</div>
+								<div class="box b-r b-b user">' . $row['user_name'] . '</div>
+								<div class="box b-r b-b dw">' . $row['downloads'] . '</div>
+								<div class="box b-b rating">' . show_rating($row['song_id'], $conn) . $GLOBALS['print_rate'] . '</div>
+							</div>
+							<div class="row">
+								<div class="box toggle">
+									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+								</div>
+								<div class="box toggle">
+									<span class="inverse">
+										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>';
+					}
+				}
 					break;
 			}
 			break;
 		default:
-			
+			switch ($by) {
+				case 'song':
+				$q = "SELECT * FROM songs
+				JOIN artists ON songs.artist_id = artists.artist_id
+				JOIN users ON songs.user_id = users.user_id
+				WHERE songs.date_deleted IS NULL ORDER BY `song_name` ASC";
+				$res = mysqli_query($conn, $q);
+				if (mysqli_num_rows($res) !== 0) {
+					while ($row = mysqli_fetch_assoc($res)) {
+						echo '<div class="row track">
+						<div class="box art">
+							<div class="thumbnail">
+								<img src="' . $row['album_art'] . '" alt="Album Art">
+							</div>
+						</div>
+						<div class="box">
+							<div class="row">
+								<div class="box b-r b-b song">' . $row['song_name'] . '</div>
+								<div class="box b-r b-b artist">' . $row['artist_name'] . '</div>
+								<div class="box b-r b-b date">' . $row['upload_date'] . '</div>
+								<div class="box b-r b-b user">' . $row['user_name'] . '</div>
+								<div class="box b-r b-b dw">' . $row['downloads'] . '</div>
+								<div class="box b-b rating">' . show_rating($row['song_id'], $conn) . $GLOBALS['print_rate'] . '</div>
+							</div>
+							<div class="row">
+								<div class="box toggle">
+									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+								</div>
+								<div class="box toggle">
+									<span class="inverse">
+										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>';
+					}
+				}
+					break;
+				case 'artist':
+				$q = "SELECT * FROM songs
+				JOIN artists ON songs.artist_id = artists.artist_id
+				JOIN users ON songs.user_id = users.user_id
+				WHERE songs.date_deleted IS NULL ORDER BY `artist_name` ASC";
+				$res = mysqli_query($conn, $q);
+				if (mysqli_num_rows($res) !== 0) {
+					while ($row = mysqli_fetch_assoc($res)) {
+						echo '<div class="row track">
+						<div class="box art">
+							<div class="thumbnail">
+								<img src="' . $row['album_art'] . '" alt="Album Art">
+							</div>
+						</div>
+						<div class="box">
+							<div class="row">
+								<div class="box b-r b-b song">' . $row['song_name'] . '</div>
+								<div class="box b-r b-b artist">' . $row['artist_name'] . '</div>
+								<div class="box b-r b-b date">' . $row['upload_date'] . '</div>
+								<div class="box b-r b-b user">' . $row['user_name'] . '</div>
+								<div class="box b-r b-b dw">' . $row['downloads'] . '</div>
+								<div class="box b-b rating">' . show_rating($row['song_id'], $conn) . $GLOBALS['print_rate'] . '</div>
+							</div>
+							<div class="row">
+								<div class="box toggle">
+									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+								</div>
+								<div class="box toggle">
+									<span class="inverse">
+										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>';
+					}
+				}
+					break;
+				case 'user':
+				$q = "SELECT * FROM songs
+				JOIN artists ON songs.artist_id = artists.artist_id
+				JOIN users ON songs.user_id = users.user_id
+				WHERE songs.date_deleted IS NULL ORDER BY `user_name` ASC";
+				$res = mysqli_query($conn, $q);
+				if (mysqli_num_rows($res) !== 0) {
+					while ($row = mysqli_fetch_assoc($res)) {
+						echo '<div class="row track">
+						<div class="box art">
+							<div class="thumbnail">
+								<img src="' . $row['album_art'] . '" alt="Album Art">
+							</div>
+						</div>
+						<div class="box">
+							<div class="row">
+								<div class="box b-r b-b song">' . $row['song_name'] . '</div>
+								<div class="box b-r b-b artist">' . $row['artist_name'] . '</div>
+								<div class="box b-r b-b date">' . $row['upload_date'] . '</div>
+								<div class="box b-r b-b user">' . $row['user_name'] . '</div>
+								<div class="box b-r b-b dw">' . $row['downloads'] . '</div>
+								<div class="box b-b rating">' . show_rating($row['song_id'], $conn) . $GLOBALS['print_rate'] . '</div>
+							</div>
+							<div class="row">
+								<div class="box toggle">
+									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+								</div>
+								<div class="box toggle">
+									<span class="inverse">
+										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>';
+					}
+				}
+					break;
+				case 'downloads':
+				$q = "SELECT * FROM songs
+				JOIN artists ON songs.artist_id = artists.artist_id
+				JOIN users ON songs.user_id = users.user_id
+				WHERE songs.date_deleted IS NULL ORDER BY `downloads` ASC";
+				$res = mysqli_query($conn, $q);
+				if (mysqli_num_rows($res) !== 0) {
+					while ($row = mysqli_fetch_assoc($res)) {
+						echo '<div class="row track">
+						<div class="box art">
+							<div class="thumbnail">
+								<img src="' . $row['album_art'] . '" alt="Album Art">
+							</div>
+						</div>
+						<div class="box">
+							<div class="row">
+								<div class="box b-r b-b song">' . $row['song_name'] . '</div>
+								<div class="box b-r b-b artist">' . $row['artist_name'] . '</div>
+								<div class="box b-r b-b date">' . $row['upload_date'] . '</div>
+								<div class="box b-r b-b user">' . $row['user_name'] . '</div>
+								<div class="box b-r b-b dw">' . $row['downloads'] . '</div>
+								<div class="box b-b rating">' . show_rating($row['song_id'], $conn) . $GLOBALS['print_rate'] . '</div>
+							</div>
+							<div class="row">
+								<div class="box toggle">
+									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+								</div>
+								<div class="box toggle">
+									<span class="inverse">
+										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>';
+					}
+				}
+					break;
+				case 'rating':
+				$q = "SELECT * FROM songs
+				JOIN artists ON songs.artist_id = artists.artist_id
+				JOIN users ON songs.user_id = users.user_id
+				WHERE songs.date_deleted IS NULL ORDER BY `average_rate` ASC";
+				$res = mysqli_query($conn, $q);
+				if (mysqli_num_rows($res) !== 0) {
+					while ($row = mysqli_fetch_assoc($res)) {
+						echo '<div class="row track">
+						<div class="box art">
+							<div class="thumbnail">
+								<img src="' . $row['album_art'] . '" alt="Album Art">
+							</div>
+						</div>
+						<div class="box">
+							<div class="row">
+								<div class="box b-r b-b song">' . $row['song_name'] . '</div>
+								<div class="box b-r b-b artist">' . $row['artist_name'] . '</div>
+								<div class="box b-r b-b date">' . $row['upload_date'] . '</div>
+								<div class="box b-r b-b user">' . $row['user_name'] . '</div>
+								<div class="box b-r b-b dw">' . $row['downloads'] . '</div>
+								<div class="box b-b rating">' . show_rating($row['song_id'], $conn) . $GLOBALS['print_rate'] . '</div>
+							</div>
+							<div class="row">
+								<div class="box toggle">
+									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+								</div>
+								<div class="box toggle">
+									<span class="inverse">
+										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>';
+					}
+				}
+					break;
+				default:
+				$q = "SELECT * FROM songs
+				JOIN artists ON songs.artist_id = artists.artist_id
+				JOIN users ON songs.user_id = users.user_id
+				WHERE songs.date_deleted IS NULL ORDER BY `upload_date` ASC";
+				$res = mysqli_query($conn, $q);
+				if (mysqli_num_rows($res) !== 0) {
+					while ($row = mysqli_fetch_assoc($res)) {
+						echo '<div class="row track">
+						<div class="box art">
+							<div class="thumbnail">
+								<img src="' . $row['album_art'] . '" alt="Album Art">
+							</div>
+						</div>
+						<div class="box">
+							<div class="row">
+								<div class="box b-r b-b song">' . $row['song_name'] . '</div>
+								<div class="box b-r b-b artist">' . $row['artist_name'] . '</div>
+								<div class="box b-r b-b date">' . $row['upload_date'] . '</div>
+								<div class="box b-r b-b user">' . $row['user_name'] . '</div>
+								<div class="box b-r b-b dw">' . $row['downloads'] . '</div>
+								<div class="box b-b rating">' . show_rating($row['song_id'], $conn) . $GLOBALS['print_rate'] . '</div>
+							</div>
+							<div class="row">
+								<div class="box toggle">
+									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+								</div>
+								<div class="box toggle">
+									<span class="inverse">
+										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>';
+					}
+				}
+					break;
+			}
 			break;
 	}
 }

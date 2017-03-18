@@ -73,10 +73,15 @@ include 'includes/functions.php';
 		?>
 		</div>
 		<!-- END Songs Header -->
-		<!-- Song -->
-		
-		<?php show_songs('DESC', 'song', $conn); ?>
-		<!-- END Song -->
+		<!-- Songs -->
+		<?php 
+		if (isset($_GET['order'])) {
+			show_songs($_GET['order'], $_GET['by'], $conn);
+		} else {
+			show_songs('DESC', 'date', $conn);
+		}
+		 ?>
+		<!-- END Songs -->
 	</div>
 	<div class="container-fluid footer">
 		&copy; 2017 - My Tunes 
