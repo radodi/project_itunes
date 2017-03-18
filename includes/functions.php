@@ -648,42 +648,7 @@ function show_rating($song_id, $conn){
 	}
 	$GLOBALS['print_rate'] = $print_rate;
 }
-//Print SONG
-function print_song(){
-	echo '<div class="row track">
-						<div class="box art">
-							<div class="thumbnail">
-								<img src="' . $row['album_art'] . '" alt="Album Art">
-							</div>
-						</div>
-						<div class="box">
-							<div class="row">
-								<div class="box b-r b-b song">' . $row['song_name'] . '</div>
-								<div class="box b-r b-b artist">' . $row['artist_name'] . '</div>
-								<div class="box b-r b-b date">' . $row['upload_date'] . '</div>
-								<div class="box b-r b-b user">' . $row['user_name'] . '</div>
-								<div class="box b-r b-b dw">' . $row['downloads'] . '</div>
-								<div class="box b-b rating">' . show_rating($row['song_id'], $conn) . $GLOBALS['print_rate'] . '</div>
-							</div>
-							<div class="row">
-								<div class="box toggle">
-									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
-									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
-								</div>
-								<div class="box toggle">
-									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>';
-}
+
 //Show SONGS FUNCTION
 function show_songs($order, $by, $conn){
 	switch ($order) {
@@ -720,11 +685,11 @@ function show_songs($order, $by, $conn){
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -764,11 +729,11 @@ function show_songs($order, $by, $conn){
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -808,11 +773,11 @@ function show_songs($order, $by, $conn){
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -852,11 +817,11 @@ function show_songs($order, $by, $conn){
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -896,11 +861,11 @@ function show_songs($order, $by, $conn){
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -940,11 +905,11 @@ function show_songs($order, $by, $conn){
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -988,11 +953,11 @@ function show_songs($order, $by, $conn){
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -1032,11 +997,11 @@ function show_songs($order, $by, $conn){
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -1076,11 +1041,11 @@ function show_songs($order, $by, $conn){
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -1120,11 +1085,11 @@ function show_songs($order, $by, $conn){
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -1164,11 +1129,11 @@ function show_songs($order, $by, $conn){
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -1208,11 +1173,11 @@ function show_songs($order, $by, $conn){
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -1223,5 +1188,37 @@ function show_songs($order, $by, $conn){
 					break;
 			}
 			break;
+	}
+}
+
+//RATE SONG FUNCTION
+function rate_song($rate, $song_id, $user_id, $conn){
+	$q = "SELECT * FROM `ratings` WHERE `song_id` = '$song_id' AND `user_id`= '$user_id'";
+	$res = mysqli_query($conn, $q);
+	//check if user already rated song
+	if (mysqli_num_rows($res) !== 0) {
+		$q = "UPDATE `ratings` SET `rating`= '$rate' WHERE `song_id`= '$song_id' AND `user_id` = '$user_id'";
+		if (mysqli_query($conn, $q)) {
+			$q = "SELECT AVG(`rating`) AS 'avg_rating' FROM `ratings` WHERE `song_id`='$song_id'";
+			$res = mysqli_query($conn, $q);
+			$row = mysqli_fetch_assoc($res);
+			$avg_rating = round($row['avg_rating']);
+			echo "$avg_rating";
+			$q = "UPDATE `songs` SET `average_rate` = '$avg_rating' WHERE `songs`.`song_id` = '$song_id'";
+			mysqli_query($conn, $q);
+			header('Location: http://localhost/project_itunes/');
+		}
+	} else {
+		$q = "INSERT INTO `ratings`(`song_id`, `user_id`, `rating`) VALUES ($song_id, $user_id, $rate)";
+		if (mysqli_query($conn, $q)) {
+			$q = "SELECT AVG(`rating`) AS 'avg_rating' FROM `ratings` WHERE `song_id`='$song_id'";
+			$res = mysqli_query($conn, $q);
+			$row = mysqli_fetch_assoc($res);
+			var_dump($row);
+			$avg_rating = round($row['avg_rating']);
+			$q = "UPDATE `songs` SET `average_rate` = '$avg_rating' WHERE `songs`.`song_id` = '$song_id'";
+			mysqli_query($conn, $q);
+			header('Location: http://localhost/project_itunes/');
+		}
 	}
 }

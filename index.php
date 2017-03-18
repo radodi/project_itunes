@@ -5,6 +5,9 @@ if (!isset($_SESSION['user_id'])) {
 }
 include 'includes/db_connect.php';
 include 'includes/functions.php';
+if (isset($_GET['ratesong'])) {
+	rate_song($_GET['ratesong'], $_GET['song_id'], $_SESSION['user_id'] , $conn);
+}
 ?>
 <!DOCTYPE html>
 <html>
