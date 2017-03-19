@@ -8,6 +8,9 @@ include 'includes/functions.php';
 if (isset($_GET['ratesong'])) {
 	rate_song($_GET['ratesong'], $_GET['song_id'], $_SESSION['user_id'] , $conn);
 }
+if (isset($_GET['dw'])) {
+	download_file($_GET['dw'], $conn);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,6 +54,11 @@ if (isset($_GET['ratesong'])) {
 						<button class="btn btn-default btn-sm"><i class="material-icons ico18">search</i> Search</button>
 					</div>
 				</form>
+				<ul class="mynav">
+					<li><a href="http://localhost/project_itunes/">Library</a></li>
+					<li><a href="add_song.php">Add Song</a></li>
+					<li><a href="my_songs.php">My Songs</a></li>
+				</ul>
 			</div>
 			<div class="col-md-4 user-col">
 				<div class="box userinfo">

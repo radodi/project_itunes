@@ -49,29 +49,24 @@ if (isset($_POST['reg'])) {
 				</div>
 			</div>
 			<div class="col-md-4">
-			<form action="login.php" method="post" class="form-inline header-form">
-				<div class="form-group">
-					<input type="email" class="form-control input-sm" name="email" placeholder="e-Mail" value="<?php if (isset($_POST['email'])){ echo $_POST['email'];} ?>">
-					<input type="password" class="form-control input-sm" name="password" placeholder="Password">
-					<input type="submit" class="btn btn-default" name="log" value="Log in">
-				</div>
-				<?php if (isset($login_err)) { echo $login_err; } ?>
-			</form>
+				<form action="login.php" method="post" class="form-inline header-form">
+					<fieldset><legend>Log in</legend>
+						<div class="form-group">
+							<input type="email" class="form-control input-sm" name="email" placeholder="e-Mail" value="<?php if (isset($_POST['email'])){ echo $_POST['email'];} ?>">
+							<input type="password" class="form-control input-sm" name="password" placeholder="Password">
+							<input type="submit" class="btn btn-default" name="log" value="Log in">
+						</div>
+					</fieldset>
+					<?php if (isset($login_err)) { echo $login_err; } ?>
+				</form>
 			</div>
 		</div>
 	</div>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="col-md-12">
-			<?php
-			if (!isset($regmsg)) {
-			?>
-			<h3>Register:</h3>
-			<?php
-			} else {
-				echo $regmsg;
-			}
-			?>
 			<form class="white-form" action="login.php" method="post">
+			<fieldset><legend>Register:</legend>
+			<?php if (isset($regmsg)) { echo $regmsg;}?>
 				<div class="form-group">
 					<label for="first_name">First Name</label>
 					<input type="text" class="form-control input-sm" name="first_name" id="first_name" value="<?php if (isset($_POST['first_name'])) { echo $_POST['first_name']; } ?>">
@@ -105,6 +100,7 @@ if (isset($_POST['reg'])) {
 				<div class="form-group">
 					<input type="submit" class="btn btn-default" name="reg" value="Register">
 				</div>
+				</fieldset>
 			</form>
 		</div>
 	</div>

@@ -31,7 +31,7 @@ body {
 	font-size: 18px;
 }
 .header-form {
-	padding-top: 40px;
+	margin: 10px;
 	text-align: center;
 	vertical-align: middle;
 }
@@ -137,7 +137,8 @@ body {
     overflow: hidden;
 }
 .toggle{
-	padding: 15px;
+	padding: 18px 18px 0 18px;
+	font-size: 0;
 }
 .inverse{
  	direction: rtl;
@@ -148,6 +149,15 @@ body {
 }
 .inverse a:hover, .inverse a:hover ~ a{ /* On hover target it's "previous";) elements */
 	color: #FFD700;
+}
+.red {
+	color: #009e9c;
+}
+.red:hover {
+	color: #BD0B0B;
+}
+.blue:hover {
+	color: #7E009E;
 }
 .footer {
 	text-align: center;
@@ -178,4 +188,17 @@ body {
 }
 .caption .material-icons {
 	vertical-align: top;
+}
+.mynav {
+	padding: 8px 15px;
+    margin-bottom: 20px;
+    list-style-type: none;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    text-align: center;
+}
+.mynav li{
+	margin: 0 10px;
+	padding: 0;
+	display: inline-block;
 }

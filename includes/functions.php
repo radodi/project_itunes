@@ -679,9 +679,9 @@ function show_songs($order, $by, $conn){
 							</div>
 							<div class="row">
 								<div class="box toggle">
-									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
-									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
@@ -723,9 +723,9 @@ function show_songs($order, $by, $conn){
 							</div>
 							<div class="row">
 								<div class="box toggle">
-									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
-									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
@@ -767,9 +767,9 @@ function show_songs($order, $by, $conn){
 							</div>
 							<div class="row">
 								<div class="box toggle">
-									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
-									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
@@ -811,9 +811,9 @@ function show_songs($order, $by, $conn){
 							</div>
 							<div class="row">
 								<div class="box toggle">
-									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
-									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
@@ -855,9 +855,9 @@ function show_songs($order, $by, $conn){
 							</div>
 							<div class="row">
 								<div class="box toggle">
-									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
-									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
@@ -899,9 +899,9 @@ function show_songs($order, $by, $conn){
 							</div>
 							<div class="row">
 								<div class="box toggle">
-									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
-									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
@@ -947,9 +947,9 @@ function show_songs($order, $by, $conn){
 							</div>
 							<div class="row">
 								<div class="box toggle">
-									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
-									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
@@ -991,9 +991,9 @@ function show_songs($order, $by, $conn){
 							</div>
 							<div class="row">
 								<div class="box toggle">
-									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
-									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
@@ -1035,9 +1035,9 @@ function show_songs($order, $by, $conn){
 							</div>
 							<div class="row">
 								<div class="box toggle">
-									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
-									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
@@ -1079,9 +1079,9 @@ function show_songs($order, $by, $conn){
 							</div>
 							<div class="row">
 								<div class="box toggle">
-									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
-									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
@@ -1123,9 +1123,9 @@ function show_songs($order, $by, $conn){
 							</div>
 							<div class="row">
 								<div class="box toggle">
-									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
-									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
@@ -1167,9 +1167,9 @@ function show_songs($order, $by, $conn){
 							</div>
 							<div class="row">
 								<div class="box toggle">
-									<i class="material-icons player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
-									<i class="material-icons player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons player">cloud_download</i></a>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
@@ -1206,7 +1206,8 @@ function rate_song($rate, $song_id, $user_id, $conn){
 			echo "$avg_rating";
 			$q = "UPDATE `songs` SET `average_rate` = '$avg_rating' WHERE `songs`.`song_id` = '$song_id'";
 			mysqli_query($conn, $q);
-			header('Location: http://localhost/project_itunes/');
+			$url = $_SERVER['HTTP_REFERER'];
+			header('Location: '. $url .'');
 		}
 	} else {
 		$q = "INSERT INTO `ratings`(`song_id`, `user_id`, `rating`) VALUES ($song_id, $user_id, $rate)";
@@ -1214,11 +1215,38 @@ function rate_song($rate, $song_id, $user_id, $conn){
 			$q = "SELECT AVG(`rating`) AS 'avg_rating' FROM `ratings` WHERE `song_id`='$song_id'";
 			$res = mysqli_query($conn, $q);
 			$row = mysqli_fetch_assoc($res);
-			var_dump($row);
 			$avg_rating = round($row['avg_rating']);
 			$q = "UPDATE `songs` SET `average_rate` = '$avg_rating' WHERE `songs`.`song_id` = '$song_id'";
 			mysqli_query($conn, $q);
-			header('Location: http://localhost/project_itunes/');
+			$url = $_SERVER['HTTP_REFERER'];
+			header('Location: '. $url .'');
 		}
 	}
+}
+// DOWNLOAD FUNC 
+function download_file($song_id, $conn){
+	$q = "SELECT * FROM `songs` JOIN artists on songs.artist_id = artists.artist_id WHERE songs.song_id = '$song_id'";
+	$res = mysqli_query($conn, $q);
+	$row = mysqli_fetch_assoc($res);
+    $filePath = $row['song_url'];
+    $downloads = $row['downloads'] + 1;
+    $q = "UPDATE `songs` SET `downloads`='$downloads' WHERE `song_id`='$song_id'";
+    mysqli_query($conn, $q);
+    if(file_exists($filePath)) {
+        $fileName = $row['artist_name'] . " - " . $row['song_name'] . ".mp3";
+        $fileSize = filesize($filePath);
+
+        // Output headers.
+        header("Cache-Control: private");
+        header("Content-Type: application/stream");
+        header("Content-Length: ".$fileSize);
+        header("Content-Disposition: attachment; filename=".$fileName);
+        // Output file.
+        readfile ($filePath);
+		header('Location: http://localhost/project_itunes/');
+        exit();
+    }
+    else {
+        die('The provided file path is not valid.');
+    }
 }
