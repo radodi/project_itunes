@@ -1356,3 +1356,57 @@ if ($uploadOk == 0) {
 	}
 }
 }
+// Search function
+function search($keyword, $conn){
+	$q = "SELECT * FROM `songs` JOIN artists ON songs.artist_id = artists.artist_id";
+	$keyword_arr = explode(' ', $keyword);
+	$operator = " WHERE";
+	foreach ($keyword_arr as $value) {
+		$q .= "$operator `songs`.`song_name` LIKE '%" . $value . "%' ";
+		$operator = "AND";
+	}
+	$operator = "OR";
+	foreach ($keyword_arr as $value) {
+		$q .= "$operator `artists`.`artist_name` LIKE '%" . $value . "%' ";
+		$operator = "AND";
+	}
+	$res = mysqli_query($conn, $q);
+	if (mysqli_num_rows($res) !== 0) {
+					while ($row = mysqli_fetch_assoc($res)) {
+						echo '<div class="row track">
+						<div class="box art">
+							<div class="thumbnail">
+								<img src="' . $row['album_art'] . '" alt="Album Art">
+							</div>
+						</div>
+						<div class="box">
+							<div class="row">
+								<div class="box b-r b-b song">' . $row['song_name'] . '</div>
+								<div class="box b-r b-b artist">' . $row['artist_name'] . '</div>
+								<div class="box b-r b-b date">' . $row['upload_date'] . '</div>
+								<div class="box b-r b-b user">' . $row['user_name'] . '</div>
+								<div class="box b-r b-b dw">' . $row['downloads'] . '</div>
+								<div class="box b-b rating">' . show_rating($row['song_id'], $conn) . $GLOBALS['print_rate'] . '</div>
+							</div>
+							<div class="row">
+								<div class="box toggle">
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+									<a href="' . HOST_NAME . '?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
+								</div>
+								<div class="box toggle">
+									<span class="inverse">
+										<a href="' . HOST_NAME . '?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>';
+					}
+				}
+				echo mysqli_error($conn);
+}

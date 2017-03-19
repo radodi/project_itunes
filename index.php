@@ -49,7 +49,7 @@ if (isset($_GET['dw'])) {
 				</div>
 			</div>
 			<div class="col-md-4">
-				<form class="form-inline header-form">
+				<form class="form-inline header-form" action="<?= HOST_NAME ?>" method="post">
 					<div class="form-group">
 						<input class="form-control input-sm" type="text" name="search" placeholder=" Type name of song or artist.."> 
 						<button class="btn btn-default btn-sm"><i class="material-icons ico18">search</i> Search</button>
@@ -77,22 +77,26 @@ if (isset($_GET['dw'])) {
 		<!-- Songs Header -->
 		<div class="row tracks">
 		<?php 
-		if (isset($_GET['order'])) {
-			print_track_head($_GET['order'], $_GET['by']);
-		} else {
-			print_track_head('ASC', 'date');
-		}
-		?>
+			if (isset($_POST['search'])) {
+				search($_POST['search'], $conn);
+			} else {
+				if (isset($_GET['order'])) {
+					print_track_head($_GET['order'], $_GET['by']);
+				} else {
+					print_track_head('ASC', 'date');
+				}
+				?>
 		</div>
-		<!-- END Songs Header -->
-		<!-- Songs -->
+			<!-- END Songs Header -->
+			<!-- Songs -->
 		<?php 
-		if (isset($_GET['order'])) {
-			show_songs($_GET['order'], $_GET['by'], $conn);
-		} else {
-			show_songs('DESC', 'date', $conn);
-		}
-		 ?>
+			if (isset($_GET['order'])) {
+				show_songs($_GET['order'], $_GET['by'], $conn);
+			} else {
+				show_songs('DESC', 'date', $conn);
+			}
+			}
+		?>
 		<!-- END Songs -->
 	</div>
 	<div class="container-fluid footer">
