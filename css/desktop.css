@@ -209,3 +209,25 @@ body {
 	padding: 0;
 	display: inline-block;
 }
+@media screen and (max-width: 1020px){
+.container {
+	width: 90%;
+	margin: 0 5%;
+}
+.container .box {
+	display: block;
+}
+.track .row div {
+	height: auto;
+}
+.art, .song, .artist, .date, .user, .dw, .rating {
+	display: block;
+	width: 98%;
+	margin: 3px 1%;
+}
+.b-r {
+    border-right: 1px dashed #CCC;
+    border-left: 1px dashed #CCC;
+}
+
+}
