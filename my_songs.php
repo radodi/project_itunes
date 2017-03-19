@@ -11,6 +11,7 @@ if (isset($_GET['ratesong'])) {
 if (isset($_GET['dw'])) {
 	download_file($_GET['dw'], $conn);
 }
+if (isset($_FILES['art'])) { upload_art($_POST['song_id'], $conn); }
 ?>
 <!DOCTYPE html>
 <html>
@@ -73,26 +74,10 @@ if (isset($_GET['dw'])) {
 		</div>
 	</div>
 	<div class="container">
-		<!-- Songs Header -->
-		<div class="row tracks">
-		<?php 
-		if (isset($_GET['order'])) {
-			print_track_head($_GET['order'], $_GET['by']);
-		} else {
-			print_track_head('ASC', 'date');
-		}
-		?>
-		</div>
-		<!-- END Songs Header -->
-		<!-- Songs -->
-		<?php 
-		if (isset($_GET['order'])) {
-			show_songs($_GET['order'], $_GET['by'], $conn);
-		} else {
-			show_songs('DESC', 'date', $conn);
-		}
-		 ?>
-		<!-- END Songs -->
+	<?php
+	if (isset($GLOBALS['picture_err'])) { echo $GLOBALS['picture_err']; unset($GLOBALS['picture_err']); }
+	show_my_songs($conn);
+	?>
 	</div>
 	<div class="container-fluid footer">
 		<div class="col-md-4"></div>

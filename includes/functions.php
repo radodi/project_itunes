@@ -1250,3 +1250,109 @@ function download_file($song_id, $conn){
         die('The provided file path is not valid.');
     }
 }
+// My SONGS Function
+function show_my_songs($conn){
+	$q = "SELECT * FROM songs
+	JOIN artists ON songs.artist_id = artists.artist_id
+	JOIN users ON songs.user_id = users.user_id
+	WHERE songs.date_deleted IS NULL AND songs.user_id = " . $_SESSION['user_id'] . " ORDER BY `upload_date` DESC";
+	$res = mysqli_query($conn, $q);
+	if (mysqli_num_rows($res) !== 0) {
+		while ($row = mysqli_fetch_assoc($res)) {
+			echo '<div class="row track">
+			<div class="box art">
+				<div class="thumbnail">
+					<img src="' . $row['album_art'] . '" alt="Album Art">
+					<div class="caption">
+						<form action="my_songs.php" method="post" enctype="multipart/form-data">
+							<div class="form-group">
+								<label>
+								&nbsp;<i class="material-icons">add_a_photo</i> Select
+									<input type="file" class="hidden" name="art">
+								</label>
+								<input type="hidden" class="hidden" name="song_id" value="' . $row['song_id'] . '">
+								<button type="submit" class="btn btn-default"><i class="material-icons">file_upload</i>Upload</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="box">
+				<div class="row">
+					<div class="box b-r b-b song">' . $row['song_name'] . '</div>
+					<div class="box b-r b-b artist">' . $row['artist_name'] . '</div>
+					<div class="box b-r b-b date">' . $row['upload_date'] . '</div>
+					<div class="box b-r b-b user">' . $row['user_name'] . '</div>
+					<div class="box b-r b-b dw">' . $row['downloads'] . '</div>
+					<div class="box b-b rating">' . show_rating($row['song_id'], $conn) . $GLOBALS['print_rate'] . '</div>
+				</div>
+				<div class="row">
+					<div class="box toggle">
+						<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
+						<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
+						<a href="http://localhost/project_itunes/my_songs.php?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
+					</div>
+					<div class="box toggle">
+						<span class="inverse">
+							<a href="http://localhost/project_itunes/my_songs.php?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+							<a href="http://localhost/project_itunes/my_songs.php?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+							<a href="http://localhost/project_itunes/my_songs.php?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+							<a href="http://localhost/project_itunes/my_songs.php?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+							<a href="http://localhost/project_itunes/my_songs.php?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>';
+	}
+}
+}
+//Upload Album Art
+function upload_art($song_id, $conn){
+	$target_dir = "audio/img/";
+	$target_file = $target_dir . basename($_FILES["art"]["name"]);
+	$uploadOk = 1;
+	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+// Check if image file is a actual image or fake image
+	if(isset($_POST["submit"]) && isset($_FILES['file'])) {
+		$check = getimagesize($_FILES["art"]["tmp_name"]);
+		if($check !== false) {
+			echo "File is an image - " . $check["mime"] . ".";
+			$uploadOk = 1;
+		} else {
+			$GLOBALS['picture_err'] = '<div class="msg"><i class="material-icons">error_outline</i>File is not an image!</div>';
+			$uploadOk = 0;
+		}
+	}
+// Check file size
+	if ($_FILES["art"]["size"] > 61440000) {
+		$GLOBALS['picture_err'] .= '<div class="msg"><i class="material-icons">error_outline</i>Sorry, your file is too large!</div>';
+		$uploadOk = 0;
+	}
+// Allow certain file formats
+	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+		&& $imageFileType != "gif" ) {
+		$GLOBALS['picture_err'] = '<div class="msg"><i class="material-icons">error_outline</i>Sorry, only JPG, JPEG, PNG & GIF files are allowed.!</div>';
+	$uploadOk = 0;
+}
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+	$GLOBALS['picture_err'] .= '<div class="msg"><i class="material-icons">error_outline</i>Sorry, your file was not uploaded!</div>';
+// if everything is ok, try to upload file
+} else {
+	$target_file = $target_dir . date('YmdHis') . "." . $imageFileType;
+	if (move_uploaded_file($_FILES["art"]["tmp_name"], $target_file)) {
+		echo "The file ". basename( $_FILES["art"]["name"]). " has been uploaded.";
+		if(resize_image(100, $target_file)) {
+			$q = "UPDATE `songs` SET `album_art`='$target_file' WHERE `song_id`='$song_id'";
+			mysqli_query($conn, $q);
+			header('Location: http://localhost/project_itunes/my_songs.php');
+		} else {
+			$GLOBALS['picture_err'] = '<div class="msg"><i class="material-icons">error_outline</i>Error Resize Image!</div>';
+		}
+
+	} else {
+		$GLOBALS['picture_err'] = '<div class="msg"><i class="material-icons">error_outline</i>Sorry, your file was not uploaded!</div>';
+	}
+}
+}
