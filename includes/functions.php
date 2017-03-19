@@ -112,7 +112,7 @@ function login_user($email, $password, $conn){
 				$_SESSION['last_name'] = $row['last_name'];
 				$_SESSION['user_name'] = $row['user_name'];
 				$_SESSION['email'] = $row['email'];
-				header('Location: http://localhost/project_itunes/');
+				header('Location: ' . HOST_NAME . '');
 			}
 		}
 	}
@@ -235,7 +235,7 @@ if ($uploadOk == 0) {
 		if(resize_image(100, $target_file)) {
 			$q = "UPDATE `users` SET `picture`='$target_file' WHERE `user_id`='" . $_SESSION['user_id'] . "'";
 			mysqli_query($conn, $q);
-			header('Location: http://localhost/project_itunes/edit_user.php');
+			header('Location: ' . HOST_NAME . 'edit_user.php');
 		} else {
 			$GLOBALS['picture_err'] = '<div class="msg"><i class="material-icons">error_outline</i>Error Resize Image!</div>';
 		}
@@ -332,22 +332,22 @@ function print_track_head($order, $by){
 				<i class="material-icons">blur_on</i> Album art
 			</div>
 			<div class="box b-r song">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=song"><i class="material-icons">headset</i> Song</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=song"><i class="material-icons">headset</i> Song</a>
 			</div>
 			<div class="box b-r artist">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=artist"><i class="material-icons">album</i> Artist</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=artist"><i class="material-icons">album</i> Artist</a>
 			</div>
 			<div class="box b-r date">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=date"><i class="material-icons">event</i> Date</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=date"><i class="material-icons">event</i> Date</a>
 			</div>
 			<div class="box b-r user">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=user"><i class="material-icons">person_pin</i> User</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=user"><i class="material-icons">person_pin</i> User</a>
 			</div>
 			<div class="box b-r dw">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
 			</div>
 			<div class="box rating">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
 			</div>
 			';
 			break;
@@ -357,22 +357,22 @@ function print_track_head($order, $by){
 				<i class="material-icons">blur_on</i> Album art
 			</div>
 			<div class="box b-r song">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=song"><i class="material-icons">headset</i> Song</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=song"><i class="material-icons">headset</i> Song</a>
 			</div>
 			<div class="box b-r artist">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=artist"><i class="material-icons">album</i> Artist</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=artist"><i class="material-icons">album</i> Artist</a>
 			</div>
 			<div class="box b-r date">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=date"><i class="material-icons">event</i> Date</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=date"><i class="material-icons">event</i> Date</a>
 			</div>
 			<div class="box b-r user">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=user"><i class="material-icons">person_pin</i> User</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=user"><i class="material-icons">person_pin</i> User</a>
 			</div>
 			<div class="box b-r dw">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
 			</div>
 			<div class="box rating">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
 			</div>
 			';
 			break;
@@ -382,22 +382,22 @@ function print_track_head($order, $by){
 				<i class="material-icons">blur_on</i> Album art
 			</div>
 			<div class="box b-r song">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=song"><i class="material-icons">headset</i> Song</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=song"><i class="material-icons">headset</i> Song</a>
 			</div>
 			<div class="box b-r artist">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=artist"><i class="material-icons">album</i> Artist</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=artist"><i class="material-icons">album</i> Artist</a>
 			</div>
 			<div class="box b-r date">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=date"><i class="material-icons">event</i> Date</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=date"><i class="material-icons">event</i> Date</a>
 			</div>
 			<div class="box b-r user">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=user"><i class="material-icons">person_pin</i> User</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=user"><i class="material-icons">person_pin</i> User</a>
 			</div>
 			<div class="box b-r dw">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
 			</div>
 			<div class="box rating">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
 			</div>
 			';
 			break;
@@ -407,22 +407,22 @@ function print_track_head($order, $by){
 				<i class="material-icons">blur_on</i> Album art
 			</div>
 			<div class="box b-r song">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=song"><i class="material-icons">headset</i> Song</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=song"><i class="material-icons">headset</i> Song</a>
 			</div>
 			<div class="box b-r artist">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=artist"><i class="material-icons">album</i> Artist</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=artist"><i class="material-icons">album</i> Artist</a>
 			</div>
 			<div class="box b-r date">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=date"><i class="material-icons">event</i> Date</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=date"><i class="material-icons">event</i> Date</a>
 			</div>
 			<div class="box b-r user">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=user"><i class="material-icons">person_pin</i> User</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=user"><i class="material-icons">person_pin</i> User</a>
 			</div>
 			<div class="box b-r dw">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
 			</div>
 			<div class="box rating">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
 			</div>
 			';
 			break;
@@ -432,22 +432,22 @@ function print_track_head($order, $by){
 				<i class="material-icons">blur_on</i> Album art
 			</div>
 			<div class="box b-r song">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=song"><i class="material-icons">headset</i> Song</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=song"><i class="material-icons">headset</i> Song</a>
 			</div>
 			<div class="box b-r artist">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=artist"><i class="material-icons">album</i> Artist</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=artist"><i class="material-icons">album</i> Artist</a>
 			</div>
 			<div class="box b-r date">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=date"><i class="material-icons">event</i> Date</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=date"><i class="material-icons">event</i> Date</a>
 			</div>
 			<div class="box b-r user">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=user"><i class="material-icons">person_pin</i> User</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=user"><i class="material-icons">person_pin</i> User</a>
 			</div>
 			<div class="box b-r dw">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
 			</div>
 			<div class="box rating">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
 			</div>
 			';
 			break;
@@ -457,22 +457,22 @@ function print_track_head($order, $by){
 				<i class="material-icons">blur_on</i> Album art
 			</div>
 			<div class="box b-r song">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=song"><i class="material-icons">headset</i> Song</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=song"><i class="material-icons">headset</i> Song</a>
 			</div>
 			<div class="box b-r artist">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=artist"><i class="material-icons">album</i> Artist</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=artist"><i class="material-icons">album</i> Artist</a>
 			</div>
 			<div class="box b-r date">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=date"><i class="material-icons">event</i> Date</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=date"><i class="material-icons">event</i> Date</a>
 			</div>
 			<div class="box b-r user">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=user"><i class="material-icons">person_pin</i> User</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=user"><i class="material-icons">person_pin</i> User</a>
 			</div>
 			<div class="box b-r dw">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
 			</div>
 			<div class="box rating">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
 			</div>
 			';
 			break;
@@ -485,22 +485,22 @@ function print_track_head($order, $by){
 				<i class="material-icons">blur_on</i> Album art
 			</div>
 			<div class="box b-r song">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=song"><i class="material-icons">headset</i> Song</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=song"><i class="material-icons">headset</i> Song</a>
 			</div>
 			<div class="box b-r artist">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=artist"><i class="material-icons">album</i> Artist</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=artist"><i class="material-icons">album</i> Artist</a>
 			</div>
 			<div class="box b-r date">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=date"><i class="material-icons">event</i> Date</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=date"><i class="material-icons">event</i> Date</a>
 			</div>
 			<div class="box b-r user">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=user"><i class="material-icons">person_pin</i> User</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=user"><i class="material-icons">person_pin</i> User</a>
 			</div>
 			<div class="box b-r dw">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
 			</div>
 			<div class="box rating">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
 			</div>
 			';
 			break;
@@ -510,22 +510,22 @@ function print_track_head($order, $by){
 				<i class="material-icons">blur_on</i> Album art
 			</div>
 			<div class="box b-r song">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=song"><i class="material-icons">headset</i> Song</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=song"><i class="material-icons">headset</i> Song</a>
 			</div>
 			<div class="box b-r artist">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=artist"><i class="material-icons">album</i> Artist</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=artist"><i class="material-icons">album</i> Artist</a>
 			</div>
 			<div class="box b-r date">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=date"><i class="material-icons">event</i> Date</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=date"><i class="material-icons">event</i> Date</a>
 			</div>
 			<div class="box b-r user">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=user"><i class="material-icons">person_pin</i> User</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=user"><i class="material-icons">person_pin</i> User</a>
 			</div>
 			<div class="box b-r dw">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
 			</div>
 			<div class="box rating">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
 			</div>
 			';
 			break;
@@ -535,22 +535,22 @@ function print_track_head($order, $by){
 				<i class="material-icons">blur_on</i> Album art
 			</div>
 			<div class="box b-r song">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=song"><i class="material-icons">headset</i> Song</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=song"><i class="material-icons">headset</i> Song</a>
 			</div>
 			<div class="box b-r artist">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=artist"><i class="material-icons">album</i> Artist</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=artist"><i class="material-icons">album</i> Artist</a>
 			</div>
 			<div class="box b-r date">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=date"><i class="material-icons">event</i> Date</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=date"><i class="material-icons">event</i> Date</a>
 			</div>
 			<div class="box b-r user">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=user"><i class="material-icons">person_pin</i> User</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=user"><i class="material-icons">person_pin</i> User</a>
 			</div>
 			<div class="box b-r dw">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
 			</div>
 			<div class="box rating">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
 			</div>
 			';
 			break;
@@ -560,22 +560,22 @@ function print_track_head($order, $by){
 				<i class="material-icons">blur_on</i> Album art
 			</div>
 			<div class="box b-r song">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=song"><i class="material-icons">headset</i> Song</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=song"><i class="material-icons">headset</i> Song</a>
 			</div>
 			<div class="box b-r artist">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=artist"><i class="material-icons">album</i> Artist</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=artist"><i class="material-icons">album</i> Artist</a>
 			</div>
 			<div class="box b-r date">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=date"><i class="material-icons">event</i> Date</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=date"><i class="material-icons">event</i> Date</a>
 			</div>
 			<div class="box b-r user">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=user"><i class="material-icons">person_pin</i> User</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=user"><i class="material-icons">person_pin</i> User</a>
 			</div>
 			<div class="box b-r dw">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
 			</div>
 			<div class="box rating">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
 			</div>
 			';
 			break;
@@ -585,22 +585,22 @@ function print_track_head($order, $by){
 				<i class="material-icons">blur_on</i> Album art
 			</div>
 			<div class="box b-r song">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=song"><i class="material-icons">headset</i> Song</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=song"><i class="material-icons">headset</i> Song</a>
 			</div>
 			<div class="box b-r artist">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=artist"><i class="material-icons">album</i> Artist</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=artist"><i class="material-icons">album</i> Artist</a>
 			</div>
 			<div class="box b-r date">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=date"><i class="material-icons">event</i> Date</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=date"><i class="material-icons">event</i> Date</a>
 			</div>
 			<div class="box b-r user">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=user"><i class="material-icons">person_pin</i> User</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=user"><i class="material-icons">person_pin</i> User</a>
 			</div>
 			<div class="box b-r dw">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
 			</div>
 			<div class="box rating">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
 			</div>
 			';
 			break;
@@ -610,22 +610,22 @@ function print_track_head($order, $by){
 				<i class="material-icons">blur_on</i> Album art
 			</div>
 			<div class="box b-r song">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=song"><i class="material-icons">headset</i> Song</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=song"><i class="material-icons">headset</i> Song</a>
 			</div>
 			<div class="box b-r artist">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=artist"><i class="material-icons">album</i> Artist</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=artist"><i class="material-icons">album</i> Artist</a>
 			</div>
 			<div class="box b-r date">
-				<a class="sort_dl" href="http://localhost/project_itunes/?order=ASC&by=date"><i class="material-icons">event</i> Date</a>
+				<a class="sort_dl" href="' . HOST_NAME . '?order=ASC&by=date"><i class="material-icons">event</i> Date</a>
 			</div>
 			<div class="box b-r user">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=user"><i class="material-icons">person_pin</i> User</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=user"><i class="material-icons">person_pin</i> User</a>
 			</div>
 			<div class="box b-r dw">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=downloads"><i class="material-icons">cloud_download</i> Downloads</a>
 			</div>
 			<div class="box rating">
-				<a class="sort_up" href="http://localhost/project_itunes/?order=DESC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
+				<a class="sort_up" href="' . HOST_NAME . '?order=DESC&by=rating"><i class="material-icons">favorite_border</i> Rating</a>
 			</div>
 			';
 			break;
@@ -681,15 +681,15 @@ function show_songs($order, $by, $conn){
 								<div class="box toggle">
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
+									<a href="' . HOST_NAME . '?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -725,15 +725,15 @@ function show_songs($order, $by, $conn){
 								<div class="box toggle">
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
+									<a href="' . HOST_NAME . '?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -769,15 +769,15 @@ function show_songs($order, $by, $conn){
 								<div class="box toggle">
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
+									<a href="' . HOST_NAME . '?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -813,15 +813,15 @@ function show_songs($order, $by, $conn){
 								<div class="box toggle">
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
+									<a href="' . HOST_NAME . '?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -857,15 +857,15 @@ function show_songs($order, $by, $conn){
 								<div class="box toggle">
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
+									<a href="' . HOST_NAME . '?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -901,15 +901,15 @@ function show_songs($order, $by, $conn){
 								<div class="box toggle">
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
+									<a href="' . HOST_NAME . '?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -949,15 +949,15 @@ function show_songs($order, $by, $conn){
 								<div class="box toggle">
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
+									<a href="' . HOST_NAME . '?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -993,15 +993,15 @@ function show_songs($order, $by, $conn){
 								<div class="box toggle">
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
+									<a href="' . HOST_NAME . '?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -1037,15 +1037,15 @@ function show_songs($order, $by, $conn){
 								<div class="box toggle">
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
+									<a href="' . HOST_NAME . '?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -1081,15 +1081,15 @@ function show_songs($order, $by, $conn){
 								<div class="box toggle">
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
+									<a href="' . HOST_NAME . '?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -1125,15 +1125,15 @@ function show_songs($order, $by, $conn){
 								<div class="box toggle">
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
+									<a href="' . HOST_NAME . '?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -1169,15 +1169,15 @@ function show_songs($order, $by, $conn){
 								<div class="box toggle">
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
 									<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-									<a href="http://localhost/project_itunes/?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
+									<a href="' . HOST_NAME . '?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 								</div>
 								<div class="box toggle">
 									<span class="inverse">
-										<a href="http://localhost/project_itunes/?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-										<a href="http://localhost/project_itunes/?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+										<a href="' . HOST_NAME . '?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 									</span>
 								</div>
 							</div>
@@ -1243,7 +1243,7 @@ function download_file($song_id, $conn){
         header("Content-Disposition: attachment; filename=".$fileName);
         // Output file.
         readfile ($filePath);
-		header('Location: http://localhost/project_itunes/');
+		header('Location: ' . HOST_NAME . '');
         exit();
     }
     else {
@@ -1290,15 +1290,15 @@ function show_my_songs($conn){
 					<div class="box toggle">
 						<i class="material-icons blue player" onclick="document.getElementById(\'player\').src=\'' .$row['song_url'] . '\';document.getElementById(\'player\').load(); document.getElementById(\'player\').play()">play_arrow</i>
 						<i class="material-icons blue player" onclick="document.getElementById(\'player\').pause();document.getElementById(\'player\').currentTime = 0;">stop</i>
-						<a href="http://localhost/project_itunes/my_songs.php?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
+						<a href="' . HOST_NAME . 'my_songs.php?dw=' . $row['song_id'] . '"><i class="material-icons red player">cloud_download</i></a>
 					</div>
 					<div class="box toggle">
 						<span class="inverse">
-							<a href="http://localhost/project_itunes/my_songs.php?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-							<a href="http://localhost/project_itunes/my_songs.php?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-							<a href="http://localhost/project_itunes/my_songs.php?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-							<a href="http://localhost/project_itunes/my_songs.php?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
-							<a href="http://localhost/project_itunes/my_songs.php?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+							<a href="' . HOST_NAME . 'my_songs.php?ratesong=5&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+							<a href="' . HOST_NAME . 'my_songs.php?ratesong=4&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+							<a href="' . HOST_NAME . 'my_songs.php?ratesong=3&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+							<a href="' . HOST_NAME . 'my_songs.php?ratesong=2&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
+							<a href="' . HOST_NAME . 'my_songs.php?ratesong=1&song_id=' . $row['song_id'] . '"><i class="material-icons player">star_rate</i></a>
 						</span>
 					</div>
 				</div>
@@ -1346,7 +1346,7 @@ if ($uploadOk == 0) {
 		if(resize_image(100, $target_file)) {
 			$q = "UPDATE `songs` SET `album_art`='$target_file' WHERE `song_id`='$song_id'";
 			mysqli_query($conn, $q);
-			header('Location: http://localhost/project_itunes/my_songs.php');
+			header('Location: ' . HOST_NAME . 'my_songs.php');
 		} else {
 			$GLOBALS['picture_err'] = '<div class="msg"><i class="material-icons">error_outline</i>Error Resize Image!</div>';
 		}

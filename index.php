@@ -3,6 +3,7 @@ session_start();
 if (!isset($_SESSION['user_id'])) {
 	header('Location: login.php');
 }
+include 'includes/settings.php';
 include 'includes/db_connect.php';
 include 'includes/functions.php';
 if (isset($_GET['ratesong'])) {
@@ -39,7 +40,7 @@ if (isset($_GET['dw'])) {
 		<div class="row">
 			<div class="col-md-4">
 				<div class="box">
-					<a href="http://localhost/project_itunes/"><img src="img/logo.png" alt="My Tunes Logo"></a>
+					<a href="<?= HOST_NAME ?>"><img src="img/logo.png" alt="My Tunes Logo"></a>
 					<audio id="player"></audio>
 				</div>
 				<div class="box">
@@ -55,7 +56,7 @@ if (isset($_GET['dw'])) {
 					</div>
 				</form>
 				<ul class="mynav">
-					<li><a href="http://localhost/project_itunes/">Library</a></li>
+					<li><a href="<?= HOST_NAME ?>">Library</a></li>
 					<li><a href="add_song.php">Add Song</a></li>
 					<li><a href="my_songs.php">My Songs</a></li>
 				</ul>
@@ -98,7 +99,7 @@ if (isset($_GET['dw'])) {
 		<div class="col-md-4"></div>
 		<div class="col-md-4">
 			<ul class="mynav">
-				<li><a href="http://localhost/project_itunes/">Library</a></li>
+				<li><a href="<?= HOST_NAME ?>">Library</a></li>
 				<li><a href="add_song.php">Add Song</a></li>
 				<li><a href="my_songs.php">My Songs</a></li>
 			</ul>

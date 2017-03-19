@@ -2,4 +2,5 @@
 session_start();
 session_unset();
 session_destroy();
-header('Location: http://localhost/project_itunes/');
+include 'includes/settings.php';
+header('Location: 'HOST_NAME'');
