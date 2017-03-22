@@ -145,7 +145,7 @@ body {
 }
 .inverse{
  	direction: rtl;
- 	display: inline-block; 
+ 	display: inline-block;
 }
 .inverse a {
 	color: #009e9c;
