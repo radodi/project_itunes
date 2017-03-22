@@ -3,7 +3,7 @@ body {
 	min-height: 100vh;
 	position: relative;
 	padding-bottom: 100px;
-	background-color: #EEE;
+	background-color: #FFF;
 	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .box {
@@ -46,11 +46,11 @@ body {
 }
 .btn-default {
 	color: #009e9c;
-	border-color: #009e9c; 
+	border-color: #009e9c;
 }
 .btn-default:hover,.btn-default:active, .btn-default:active:hover {
 	color: #009e9c;
-	border-color: #009e9c; 
+	border-color: #009e9c;
 }
 .btn-default:focus {
 	outline: 0!important;
@@ -145,7 +145,7 @@ body {
 }
 .inverse{
  	direction: rtl;
- 	display: inline-block; /* inline-block to keep parent at the left of window */
+ 	display: inline-block; 
 }
 .inverse a {
 	color: #009e9c;
@@ -175,8 +175,8 @@ body {
 	background-color: #009e9c!important;
 	padding: 3px;
 	margin: 5px;
-	border-radius: 3px; 
-	margin-bottom: 5px; 
+	border-radius: 3px;
+	margin-bottom: 5px;
 }
 .form-group .msg {
 	margin: 0 3px;
@@ -226,8 +226,11 @@ body {
 	margin: 3px 1%;
 }
 .b-r {
-    border-right: 1px dashed #CCC;
-    border-left: 1px dashed #CCC;
+	border-right: 1px dashed #CCC;
+	border-left: 1px dashed #CCC;
 }
 
+}
+.new_class{
+	font-size:  12px;
 }
