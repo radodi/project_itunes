@@ -1,10 +1,10 @@
 # Ignore files in users directory
-/audio/*.mp3
-/audio/img/*.jpg
-/audio/img/*.jpeg
-/audio/img/*.png
-/audio/img/*.gif
-/img/users/*.jpg
-/img/users/*.jpeg
-/img/users/*.png
-/img/users/*.gif
+audio/*.mp3
+audio/img/*.jpg
+audio/img/*.jpeg
+audio/img/*.png
+audio/img/*.gif
+img/users/*.jpg
+img/users/*.jpeg
+img/users/*.png
+img/users/*.gif
