@@ -16,11 +16,13 @@ include 'includes/assets/header.php';
 ?>
 	<div class="container">
 		<!-- Songs Header -->
-		<div class="row tracks">
 		<?php 
 			if (isset($_GET['search'])) {
 				search($_GET['search'], $conn);
 			} else {
+				?>
+		<div class="row tracks">
+		<?php
 				if (isset($_GET['order'])) {
 					print_track_head($_GET['order'], $_GET['by']);
 				} else {

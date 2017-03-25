@@ -1358,7 +1358,7 @@ if ($uploadOk == 0) {
 }
 // Search function
 function search($keyword, $conn){
-	$q = "SELECT * FROM `songs` JOIN artists ON songs.artist_id = artists.artist_id";
+	$q = "SELECT * FROM `songs` JOIN artists ON songs.artist_id = artists.artist_id JOIN users ON songs.user_id = users.user_id";
 	$keyword_arr = explode(' ', $keyword);
 	$operator = " WHERE";
 	foreach ($keyword_arr as $value) {
